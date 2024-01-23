@@ -42,11 +42,60 @@ dependencies:
   just_audio: ^0.9.34
   get_it: ^7.6.0
   cached_network_image: ^3.2.3
+  auto_size_text: ^3.0.0
+  responsive_framework: ^0.2.0
+  textfield_tags: ^2.0.2
+  file_picker: ^5.2.9
+  image_picker: ^0.8.8 
+  flutter_form_builder: ^9.0.0
+  form_builder_validators: ^9.0.0
+  flutter_painter_2: ^2.0.1
+  phosphor_flutter: ^2.0.0
+  image_picker_plus: ^0.5.6+2
+  multi_image_picker_view: ^0.0.15
+  flutter_draggable_gridview: ^0.0.8
+  extended_image: ^8.2.0
+  hooks_riverpod: ^2.3.6
+  video_editor: ^3.0.0
+  video_thumbnail: ^0.5.3
+  isar: 4.0.0-dev.14
+  isar_flutter_libs: 4.0.0-dev.14
+  path_provider: ^2.1.0
+
+  super_editor:
+    git:
+      url: https://github.com/superlistapp/super_editor.git
+      path: super_editor
+  super_editor_markdown:
+    git:
+      url: https://github.com/superlistapp/super_editor.git
+      path: super_editor_markdown
+  super_text_layout:
+    git:
+      url: https://github.com/superlistapp/super_editor.git
+      path: super_text_layout
+
+dependency_overrides:
+  # Override to local mono-repo path so devs can test this repo
+  # against changes that they're making to other mono-repo packages
+  super_editor:
+    path: D:/super_editor/super_editor
+  super_editor_markdown:
+    path: D:/super_editor/super_editor_markdown
+  super_text_layout:
+    path: D:/super_editor/super_text_layout
+  attributed_text:
+    path: D:/super_editor/attributed_text
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  build_runner: ^2.4.6
+  
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -64,6 +113,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
   assets:
@@ -94,3 +144,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true

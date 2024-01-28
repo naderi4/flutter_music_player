@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:isar/isar.dart';
 import 'package:music_player/entities/author.dart';
 import 'package:music_player/entities/category.dart';
@@ -8,7 +6,7 @@ import 'package:music_player/entities/collect.dart';
 import 'tag.dart';
 part 'item.g.dart';
 
-enum TypeItem { NON, GALLERY, ARTICEL, VIDEO, AUDIO }
+enum TypeItem { GALLERY, ARTICEL, VIDEO, AUDIO }
 
 class ItemInfo {
   int id;
@@ -28,7 +26,7 @@ class ItemInfo {
       this.name = '',
       this.img = '',
       this.length = 0,
-      this.type = TypeItem.NON,
+      this.type = TypeItem.GALLERY,
       this.file = '',
       required this.dateCreate,
       required this.dateUpdate,
@@ -42,7 +40,7 @@ class ItemInfo {
             name: name ?? "",
             img: img ?? '',
             length: length ?? 0,
-            type: TypeItem.NON,
+            type: TypeItem.GALLERY,
             file: '',
             dateCreate: DateTime.now(),
             dateUpdate: DateTime.now(),

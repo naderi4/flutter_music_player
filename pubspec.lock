@@ -88,6 +88,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  awesome_select:
+    dependency: "direct main"
+    description:
+      name: awesome_select
+      sha256: b7ea3886c29f07db559688feca329961aa8115c97ecc0615b11db8b8705160c3
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -540,6 +548,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.4+7"
+  form_builder_image_picker:
+    dependency: "direct main"
+    description:
+      name: form_builder_image_picker
+      sha256: d3920ba0472db8d66a96ab49d9103eb7c60699451e9d3674f24657cf87e2019d
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   form_builder_validators:
     dependency: "direct main"
     description:
@@ -548,6 +564,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.1.0"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: c3fd9336eb55a38cc1bbd79ab17573113a8deccd0ecbbf926cca3c62803b5c2d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.1"
   frontend_server_client:
     dependency: transitive
     description:
@@ -1036,6 +1060,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.9"
+  riverpod_infinite_scroll_pagination:
+    dependency: "direct main"
+    description:
+      name: riverpod_infinite_scroll_pagination
+      sha256: "2780efb1f9f22693a8d50a8b50edb994ea2e085f553dae4d5ddd6789a99253ab"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   rxdart:
     dependency: transitive
     description:
@@ -1084,6 +1116,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  skeletonizer:
+    dependency: transitive
+    description:
+      name: skeletonizer
+      sha256: ff4c36e826efd5288d7a84e7619a6e9be8185d3064cecf101a9133762f3b401b
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.0"
   sky_engine:
     dependency: transitive
     description: flutter

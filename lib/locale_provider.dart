@@ -41,7 +41,7 @@ class LocaleState extends StateNotifier<Locale> {
 }
 
 final localeStateProvider = StateNotifierProvider<LocaleState, Locale>((ref) {
-  return LocaleState('en');
+  return LocaleState('fa');
 });
 
 // class LocaleNotifier extends ChangeNotifier {

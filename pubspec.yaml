@@ -74,6 +74,9 @@ dependencies:
     git:
       url: https://github.com/superlistapp/super_editor.git
       path: super_text_layout
+  awesome_select: ^6.0.0
+  form_builder_image_picker: ^4.0.0
+  riverpod_infinite_scroll_pagination: ^1.0.3
 
 dependency_overrides:
   # Override to local mono-repo path so devs can test this repo

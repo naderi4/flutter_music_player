@@ -9,7 +9,7 @@ class TagLocalService {
     return item;
   }
 
-  Future<List<Tag>> getAll(int page, int take) async {
+  Future<List<Tag>> getAll({int page = 1, int take = 20}) async {
     final items = isar.tags.where().findAll(offset: page * take, limit: take);
     return items;
   }

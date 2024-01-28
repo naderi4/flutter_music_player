@@ -50,7 +50,7 @@ const ItemSchema = IsarGeneratedSchema(
       IsarPropertySchema(
         name: 'type',
         type: IsarType.byte,
-        enumMap: {"NON": 0, "GALLERY": 1, "ARTICEL": 2, "VIDEO": 3, "AUDIO": 4},
+        enumMap: {"GALLERY": 0, "ARTICEL": 1, "VIDEO": 2, "AUDIO": 3},
       ),
       IsarPropertySchema(
         name: 'file',
@@ -222,9 +222,9 @@ Item deserializeItem(IsarReader reader) {
   );
   {
     if (IsarCore.readNull(reader, 7)) {
-      object.type = TypeItem.NON;
+      object.type = TypeItem.GALLERY;
     } else {
-      object.type = _itemType[IsarCore.readByte(reader, 7)] ?? TypeItem.NON;
+      object.type = _itemType[IsarCore.readByte(reader, 7)] ?? TypeItem.GALLERY;
     }
   }
   object.file = IsarCore.readString(reader, 8) ?? '';
@@ -304,9 +304,9 @@ dynamic deserializeItemProp(IsarReader reader, int property) {
     case 7:
       {
         if (IsarCore.readNull(reader, 7)) {
-          return TypeItem.NON;
+          return TypeItem.GALLERY;
         } else {
-          return _itemType[IsarCore.readByte(reader, 7)] ?? TypeItem.NON;
+          return _itemType[IsarCore.readByte(reader, 7)] ?? TypeItem.GALLERY;
         }
       }
     case 8:
@@ -514,11 +514,10 @@ extension ItemQueryBuilderUpdate on QueryBuilder<Item, Item, QOperations> {
 }
 
 const _itemType = {
-  0: TypeItem.NON,
-  1: TypeItem.GALLERY,
-  2: TypeItem.ARTICEL,
-  3: TypeItem.VIDEO,
-  4: TypeItem.AUDIO,
+  0: TypeItem.GALLERY,
+  1: TypeItem.ARTICEL,
+  2: TypeItem.VIDEO,
+  3: TypeItem.AUDIO,
 };
 
 extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
@@ -1991,7 +1990,7 @@ const ItemLinkSchema = IsarGeneratedSchema(
       IsarPropertySchema(
         name: 'type',
         type: IsarType.byte,
-        enumMap: {"NON": 0, "GALLERY": 1, "ARTICEL": 2, "VIDEO": 3, "AUDIO": 4},
+        enumMap: {"GALLERY": 0, "ARTICEL": 1, "VIDEO": 2, "AUDIO": 3},
       ),
       IsarPropertySchema(
         name: 'file',
@@ -2164,9 +2163,10 @@ ItemLink deserializeItemLink(IsarReader reader) {
   );
   {
     if (IsarCore.readNull(reader, 8)) {
-      object.type = TypeItem.NON;
+      object.type = TypeItem.GALLERY;
     } else {
-      object.type = _itemLinkType[IsarCore.readByte(reader, 8)] ?? TypeItem.NON;
+      object.type =
+          _itemLinkType[IsarCore.readByte(reader, 8)] ?? TypeItem.GALLERY;
     }
   }
   object.file = IsarCore.readString(reader, 9) ?? '';
@@ -2174,11 +2174,10 @@ ItemLink deserializeItemLink(IsarReader reader) {
 }
 
 const _itemLinkType = {
-  0: TypeItem.NON,
-  1: TypeItem.GALLERY,
-  2: TypeItem.ARTICEL,
-  3: TypeItem.VIDEO,
-  4: TypeItem.AUDIO,
+  0: TypeItem.GALLERY,
+  1: TypeItem.ARTICEL,
+  2: TypeItem.VIDEO,
+  3: TypeItem.AUDIO,
 };
 
 extension ItemLinkQueryFilter

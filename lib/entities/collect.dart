@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:isar/isar.dart';
 import 'package:music_player/entities/author.dart';
 import 'package:music_player/entities/category.dart';

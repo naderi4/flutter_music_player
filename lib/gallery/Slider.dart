@@ -137,8 +137,8 @@ class _Slider extends State<SliderPhoto> {
             scrollDirection: Axis.vertical,
             // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             //     crossAxisCount: 4, mainAxisExtent: 200),
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 300,
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: widget.images.length == 1 ? 1000 : 500,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 childAspectRatio: 1 / 1.5),

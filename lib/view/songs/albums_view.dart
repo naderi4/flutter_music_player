@@ -6,7 +6,9 @@ import 'package:music_player/view/songs/album_details_view.dart';
 import 'package:music_player/view_model/albums_view_model.dart';
 
 class AlbumsView extends StatefulWidget {
-  const AlbumsView({super.key});
+  const AlbumsView({super.key, this.selectmode = false});
+
+  final bool selectmode;
 
   @override
   State<AlbumsView> createState() => _AlbumsViewState();
@@ -36,7 +38,11 @@ class _AlbumsViewState extends State<AlbumsView> {
               return AlbumCell(
                 aObj: aObj,
                 onPressed: () {
-                  Get.to(() => const AlbumDetailsView());
+                  if (!widget.selectmode) {
+                    Get.to(() => const AlbumDetailsView());
+                  } else {
+                    Navigator.pop(context, aObj);
+                  }
                 },
                 onPressedMenu: (selectIndex) {
                   if (kDebugMode) {

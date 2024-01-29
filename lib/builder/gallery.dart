@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:music_player/gallery/Slider.dart';
+import 'package:music_player/builder/Slider.dart';
+
+import 'PhotoEditor.dart';
 
 class gallerybuilder extends StatefulHookConsumerWidget {
   gallerybuilder({super.key, required this.images});
@@ -79,6 +81,29 @@ class _gallerybuilderState extends ConsumerState<gallerybuilder> {
                         tooltip: 'دوربین',
                         child: const Icon(Icons.camera),
                       ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Visibility(
+                          visible: widget.images.isNotEmpty,
+                          child: FloatingActionButton(
+                            onPressed: () async {
+                              await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          PhotoEditor(
+                                              imageURL: widget.images.first),
+                                      fullscreenDialog: false));
+                              setState(() {
+                                //imageCache.clear();
+                                imageCache.clearLiveImages();
+                              });
+                            },
+                            heroTag: 'imagesel2',
+                            tooltip: 'دوربین',
+                            child: const Icon(Icons.edit),
+                          )),
                       // FloatingActionButton(
                       //   onPressed: () {
                       //     _onImageButtonPressed(

@@ -7,7 +7,7 @@ import 'package:music_player/view/songs/genres_view.dart';
 import 'package:music_player/view/songs/playlists_view.dart';
 
 import '../../common/color_extension.dart';
-import '../../gallery/articleFrom.dart';
+import '../../builder/articleFrom.dart';
 import '../../view_model/splash_view_model.dart';
 
 class SongsView extends StatefulWidget {

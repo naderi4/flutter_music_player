@@ -199,7 +199,7 @@ class _Slider extends State<SliderPhoto> {
                                 child: Align(
                                   alignment: Alignment.topLeft,
                                   child: IconButton(
-                                      iconSize: 24,
+                                      iconSize: 36,
                                       onPressed: () async => {
                                             await Navigator.push(
                                                 context,

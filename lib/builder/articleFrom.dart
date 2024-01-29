@@ -10,10 +10,14 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
-import 'package:music_player/gallery/gallery.dart';
-import 'package:music_player/gallery/imageBuilder.dart';
+import 'package:music_player/builder/articelBuilder.dart';
+import 'package:music_player/builder/audioBuilder.dart';
+import 'package:music_player/builder/gallery.dart';
+import 'package:music_player/builder/imageBuilder.dart';
+import 'package:music_player/builder/videoBuilder.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
+import '../common/color_extension.dart';
 import '../entities/item.dart';
 import '../locale_provider.dart';
 import '../services/service.dart';
@@ -125,6 +129,7 @@ class _articleFrom extends ConsumerState<ArticleFrom>
                           SliverToBoxAdapter(
                               child: TabBar(
                                   controller: _tabController,
+                                  unselectedLabelColor: TColor.primaryText80,
                                   onTap: (int idx) async {
                                     setState(() {
                                       _tabIndex = idx;
@@ -464,7 +469,9 @@ class _articleFrom extends ConsumerState<ArticleFrom>
                                           FormBuilderChoiceChip<TypeItem>(
                                             alignment: WrapAlignment.center,
                                             name: 'type',
-                                            selectedColor: Colors.amber,
+                                            selectedColor: Colors.white,
+                                            backgroundColor:
+                                                Colors.purple.shade100,
                                             crossAxisAlignment:
                                                 WrapCrossAlignment.center,
                                             // decoration:
@@ -503,9 +510,9 @@ class _articleFrom extends ConsumerState<ArticleFrom>
                                       index: state.type.index,
                                       children: [
                                         gallerybuilder(images: []),
-                                        Text('data'),
-                                        Text('data'),
-                                        Text('data')
+                                        articelBuilder(),
+                                        videoBuilder(),
+                                        audioBuilder()
                                       ],
                                     )
                                   ])))

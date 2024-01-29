@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:music_player/gallery/Slider.dart';
+import 'package:music_player/builder/Slider.dart';
 
 class imageBuilder extends StatefulHookConsumerWidget {
   const imageBuilder({super.key});

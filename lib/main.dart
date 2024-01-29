@@ -7,7 +7,7 @@ import 'package:music_player/common/color_extension.dart';
 import 'package:music_player/view/splash_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'articel/editor.dart';
-import 'gallery/articleFrom.dart';
+import 'builder/articleFrom.dart';
 import 'view/songs/songs_view.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_player/common_widget/all_song_row.dart';
-import 'package:music_player/common_widget/player_bottom_button.dart';
-import 'package:music_player/view_model/all_songs_view_model.dart';
+import 'package:SocialLib/common_widget/all_song_row.dart';
+import 'package:SocialLib/common_widget/player_bottom_button.dart';
+import 'package:SocialLib/view_model/all_songs_view_model.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 import '../../common/color_extension.dart';
@@ -15,9 +15,7 @@ class PlayPlayListView extends StatefulWidget {
 }
 
 class _PlayPlayListViewState extends State<PlayPlayListView> {
-
   final allVM = Get.put(AllSongsViewModel());
-
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +140,6 @@ class _PlayPlayListViewState extends State<PlayPlayListView> {
             const SizedBox(
               height: 20,
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -243,8 +240,6 @@ class _PlayPlayListViewState extends State<PlayPlayListView> {
                 ),
               ],
             ),
-
-            
             const SizedBox(
               height: 10,
             ),
@@ -256,7 +251,7 @@ class _PlayPlayListViewState extends State<PlayPlayListView> {
               height: 25,
             ),
             Text(
-              "Black or White",
+              "بررسی امامت در قرآن",
               style: TextStyle(
                   color: TColor.primaryText.withOpacity(0.9),
                   fontSize: 18,
@@ -269,11 +264,10 @@ class _PlayPlayListViewState extends State<PlayPlayListView> {
               "Michael Jackson • Album - Dangerous",
               style: TextStyle(color: TColor.primaryText80, fontSize: 12),
             ),
-
             Obx(
               () => ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
                   padding: const EdgeInsets.all(20),
                   itemCount: allVM.allList.length,
                   itemBuilder: (context, index) {
@@ -282,15 +276,10 @@ class _PlayPlayListViewState extends State<PlayPlayListView> {
                     return AllSongRow(
                       sObj: sObj,
                       onPressed: () {},
-                      onPressedPlay: () {
-                       
-                      },
+                      onPressedPlay: () {},
                     );
                   }),
             )
-            
-            
-            
           ],
         ),
       ),

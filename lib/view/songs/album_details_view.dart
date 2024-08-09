@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_player/common_widget/album_song_row.dart';
+import 'package:SocialLib/common_widget/album_song_row.dart';
 
 import '../../common/color_extension.dart';
 import '../../view_model/albums_view_model.dart';
@@ -16,7 +16,6 @@ class AlbumDetailsView extends StatefulWidget {
 }
 
 class _AlbumDetailsViewState extends State<AlbumDetailsView> {
-
   final albumVM = Get.put(AlbumViewModel());
 
   @override
@@ -38,7 +37,7 @@ class _AlbumDetailsViewState extends State<AlbumDetailsView> {
           ),
         ),
         title: Text(
-          "Album Details",
+          "محتوایات مجموعه",
           style: TextStyle(
               color: TColor.primaryText80,
               fontSize: 17,
@@ -104,7 +103,7 @@ class _AlbumDetailsViewState extends State<AlbumDetailsView> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "History",
+                                  "تاریخ اسلام",
                                   style: TextStyle(
                                       color:
                                           TColor.primaryText.withOpacity(0.9),
@@ -115,7 +114,7 @@ class _AlbumDetailsViewState extends State<AlbumDetailsView> {
                                   height: 8,
                                 ),
                                 Text(
-                                  "by Michael Jackson",
+                                  "توسط حسن انصاری",
                                   style: TextStyle(
                                       color:
                                           TColor.primaryText.withOpacity(0.74),
@@ -126,7 +125,7 @@ class _AlbumDetailsViewState extends State<AlbumDetailsView> {
                                   height: 8,
                                 ),
                                 Text(
-                                  "1996  .  18 Songs  .  64 min",
+                                  "2004." " 18 مطلب" " 120 دقیقه",
                                   style: TextStyle(
                                       color:
                                           TColor.primaryText.withOpacity(0.74),
@@ -167,13 +166,11 @@ class _AlbumDetailsViewState extends State<AlbumDetailsView> {
                                       height: 12,
                                       fit: BoxFit.contain,
                                     ),
-
                                     const SizedBox(
                                       width: 8,
                                     ),
-
                                     Text(
-                                      "Play",
+                                      "پخش",
                                       style: TextStyle(
                                           color: TColor.primaryText
                                               .withOpacity(0.74),
@@ -184,15 +181,15 @@ class _AlbumDetailsViewState extends State<AlbumDetailsView> {
                                 ),
                               ),
                             ),
-
                             InkWell(
                               borderRadius: BorderRadius.circular(17.5),
                               onTap: () {},
                               child: Container(
-                                width: 70,
+                                width: 80,
                                 height: 25,
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: TColor.primaryText, width: 1),
+                                  border: Border.all(
+                                      color: TColor.primaryText, width: 1),
                                   borderRadius: BorderRadius.circular(17.5),
                                 ),
                                 alignment: Alignment.center,
@@ -209,7 +206,7 @@ class _AlbumDetailsViewState extends State<AlbumDetailsView> {
                                       width: 8,
                                     ),
                                     Text(
-                                      "Share",
+                                      "اشتراک گذاری",
                                       style: TextStyle(
                                           color: TColor.primaryText
                                               .withOpacity(0.74),
@@ -220,7 +217,6 @@ class _AlbumDetailsViewState extends State<AlbumDetailsView> {
                                 ),
                               ),
                             ),
-
                             InkWell(
                               borderRadius: BorderRadius.circular(17.5),
                               onTap: () {},
@@ -247,7 +243,7 @@ class _AlbumDetailsViewState extends State<AlbumDetailsView> {
                                       width: 8,
                                     ),
                                     Text(
-                                      "Add to Favorites",
+                                      "افزودن به لیست پسند",
                                       style: TextStyle(
                                           color: TColor.primaryText
                                               .withOpacity(0.74),
@@ -264,24 +260,21 @@ class _AlbumDetailsViewState extends State<AlbumDetailsView> {
                     ),
                   )
                 ],
-              )
-,
-               ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                itemCount: albumVM.playedArr.length,
-                itemBuilder: (context, index) {
-                  var sObj = albumVM.playedArr[index];
-                  return AlbumSongRow(
-                    sObj: sObj,
-                    
-                    onPressed: () {},
-                    onPressedPlay: () {},
-                    isPlay: index == 0,
-                  );
-                })              
-            
+              ),
+              ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  itemCount: albumVM.playedArr.length,
+                  itemBuilder: (context, index) {
+                    var sObj = albumVM.playedArr[index];
+                    return AlbumSongRow(
+                      sObj: sObj,
+                      onPressed: () {},
+                      onPressedPlay: () {},
+                      isPlay: index == 0,
+                    );
+                  })
             ],
           ),
         ),

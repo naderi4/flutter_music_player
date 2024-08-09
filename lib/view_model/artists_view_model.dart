@@ -4,92 +4,77 @@ class ArtistsViewModel extends GetxController {
   final allList = [
     {
       "image": "assets/img/ar_1.png",
-      "name": "Beyonce",
-      "albums": "4 albums",
-      "songs": "38 Songs"
+      "name": "ماهر المعيقلي",
+      "albums": "4 مجموعه",
+      "songs": "38 مطلب"
     },
     {
       "image": "assets/img/ar_2.png",
-      "name": "Bebe Rexha",
-      "albums": "2 albums",
-      "songs": "18 Songs"
+      "name": "مشاري العفاسي",
+      "albums": "2 مجموعه",
+      "songs": "18 مطلب"
     },
     {
       "image": "assets/img/ar_3.png",
-      "name": "Maroon 5",
-      "albums": "5 albums",
-      "songs": "46 Songs"
+      "name": "إدريس أبكر",
+      "albums": "5 مجموعه",
+      "songs": "46 مطلب"
     },
     {
       "image": "assets/img/ar_4.png",
-      "name": "Michael Jackson",
-      "albums": "10 albums",
-      "songs": "112 Songs"
+      "name": "سعد الغامدي",
+      "albums": "10 مجموعه",
+      "songs": "112 مطلب"
     },
     {
       "image": "assets/img/ar_5.png",
-      "name": "Queens",
-      "albums": "3 albums",
-      "songs": "32 Songs"
+      "name": "أحمد العجمي",
+      "albums": "3 مجموعه",
+      "songs": "32 مطلب"
     },
     {
       "image": "assets/img/ar_6.png",
-      "name": "Yani",
-      "albums": "1 albums",
-      "songs": "13 Songs"
+      "name": "اسلام صبحي",
+      "albums": "1 مجموعه",
+      "songs": "13 مطلب"
     }
   ].obs;
 
-
   final albumsArr = [
     {
-      "image":"assets/img/ar_d_1.png",
-      "name":"Fire Dragon",
-      "year":"2019",
+      "image": "assets/img/ar_d_1.png",
+      "name": "تاریخ اسلام",
+      "year": "2019",
     },
     {
       "image": "assets/img/ar_d_2.png",
-      "name": "Sound of Life",
+      "name": "پاسخ به شبهات",
       "year": "2018",
     },
     {
-      "image":"assets/img/ar_d_3.png",
-      "name":"Giving Heart",
-      "year":"2017",
+      "image": "assets/img/ar_d_3.png",
+      "name": "احادیث ضعیف",
+      "year": "2017",
     },
     {
       "image": "assets/img/ar_d_4.png",
-      "name": "Dream of",
+      "name": "دلایل عقلی توحید",
       "year": "2016",
     },
   ];
 
-
   final playedArr = [
-    {"duration": "3:56", "name": "Billie Jean", "artists": "Michael Jackson"},
-    {"duration": "3:56", "name": "Earth Song", "artists": "Michael Jackson"},
-    {"duration": "3:56", "name": "Mirror", "artists": "Justin Timberlake"},
-    {
-      "duration": "3:56",
-      "name": "Remember the Time",
-      "artists": "Michael Jackson"
-    },
-    {"duration": "3:56", "name": "Billie Jean", "artists": "Michael Jackson"},
-    {"duration": "3:56", "name": "Earth Song", "artists": "Michael Jackson"},
-    {"duration": "3:56", "name": "Mirror", "artists": "Justin Timberlake"},
-    {
-      "duration": "3:56",
-      "name": "Remember the Time",
-      "artists": "Michael Jackson"
-    },
-    {"duration": "3:56", "name": "Billie Jean", "artists": "Michael Jackson"},
-    {"duration": "3:56", "name": "Earth Song", "artists": "Michael Jackson"},
-    {"duration": "3:56", "name": "Mirror", "artists": "Justin Timberlake"},
-    {
-      "duration": "3:56",
-      "name": "Remember the Time",
-      "artists": "Michael Jackson"
-    }
+    {"duration": "3:56", "name": "تراك 1", "artists": "حسن انصاری"},
+    {"duration": "3:56", "name": "تراك 2", "artists": "حسن انصاری"},
+    {"duration": "3:56", "name": "تراك 3", "artists": "حسن انصاری"},
+    {"duration": "3:56", "name": "تراك 4", "artists": "حسن انصاری"},
+    {"duration": "3:56", "name": "تراك 5", "artists": "حسن انصاری"},
+    {"duration": "3:56", "name": "تراك 6", "artists": "حسن انصاری"},
+    {"duration": "3:56", "name": "تراك 7", "artists": "حسن انصاری"},
+    {"duration": "3:56", "name": "تراك 8", "artists": "حسن انصاری"},
+    {"duration": "3:56", "name": "تراك 9", "artists": "حسن انصاری"},
+    {"duration": "3:56", "name": "تراك 10", "artists": "حسن انصاری"},
+    {"duration": "3:56", "name": "تراك 11", "artists": "حسن انصاری"},
+    {"duration": "3:56", "name": "تراك 12", "artists": "حسن انصاری"}
   ].obs;
- 
 }

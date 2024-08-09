@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:super_editor/super_editor.dart';
 
 import '_example_document.dart';
-import '_toolbar.dart';
 
 /// Example of a rich text editor.
 ///
@@ -277,10 +276,10 @@ class _ExampleEditorState extends State<ArticelEditor> {
         builder: (themedContext) {
           return OverlayPortal(
             controller: _textFormatBarOverlayController,
-            overlayChildBuilder: _buildFloatingToolbar,
+            overlayChildBuilder: (b) => const SizedBox.shrink(),
             child: OverlayPortal(
               controller: _imageFormatBarOverlayController,
-              overlayChildBuilder: _buildImageToolbar,
+              overlayChildBuilder: (b) => const SizedBox.shrink(),
               child: Stack(
                 children: [
                   Column(
@@ -480,42 +479,6 @@ class _ExampleEditorState extends State<ArticelEditor> {
           commonOps: _docOps,
         );
       },
-    );
-  }
-
-  Widget _buildFloatingToolbar(BuildContext context) {
-    return EditorToolbar(
-      editorViewportKey: _viewportKey,
-      anchor: _selectionLayerLinks.expandedSelectionBoundsLink,
-      editorFocusNode: _editorFocusNode,
-      editor: _docEditor,
-      document: _doc,
-      composer: _composer,
-      closeToolbar: _hideEditorToolbar,
-    );
-  }
-
-  Widget _buildImageToolbar(BuildContext context) {
-    return ImageFormatToolbar(
-      anchor: _imageSelectionAnchor,
-      composer: _composer,
-      setWidth: (nodeId, width) {
-        print("Applying width $width to node $nodeId");
-        final node = _doc.getNodeById(nodeId)!;
-        final currentStyles =
-            SingleColumnLayoutComponentStyles.fromMetadata(node);
-
-        _docEditor.execute([
-          ChangeSingleColumnLayoutComponentStylesRequest(
-            nodeId: nodeId,
-            styles: SingleColumnLayoutComponentStyles(
-              width: width,
-              padding: currentStyles.padding,
-            ),
-          )
-        ]);
-      },
-      closeToolbar: _hideImageToolbar,
     );
   }
 }

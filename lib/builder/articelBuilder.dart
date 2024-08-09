@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../articel/editor.dart';
+
 class articelBuilder extends StatefulHookConsumerWidget {
   const articelBuilder({super.key});
 
@@ -11,6 +13,6 @@ class articelBuilder extends StatefulHookConsumerWidget {
 class _articelBuilderState extends ConsumerState<articelBuilder> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ArticelEditor();
   }
 }

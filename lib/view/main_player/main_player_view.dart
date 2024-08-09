@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_player/common_widget/player_bottom_button.dart';
-import 'package:music_player/view/main_player/driver_mode_view.dart';
-import 'package:music_player/view/main_player/play_playlist_view.dart';
+import 'package:SocialLib/common_widget/player_bottom_button.dart';
+import 'package:SocialLib/view/main_player/driver_mode_view.dart';
+import 'package:SocialLib/view/main_player/play_playlist_view.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 import '../../common/color_extension.dart';
@@ -34,109 +34,105 @@ class _MainPlayerViewState extends State<MainPlayerView> {
           ),
         ),
         title: Text(
-          "Now Playing",
+          "صفحه پخش",
           style: TextStyle(
               color: TColor.primaryText80,
               fontSize: 17,
               fontWeight: FontWeight.w600),
         ),
         actions: [
-           PopupMenuButton<int>(
-                    color: const Color(0xff383B49),
-                    offset: const Offset(-10, 15),
-                    elevation: 1,
-                    icon: Image.asset(
-                      "assets/img/more_btn.png",
-                      width: 20,
-                      height: 20,
-                      color: Colors.white,
+          PopupMenuButton<int>(
+              color: const Color(0xff383B49),
+              offset: const Offset(-10, 15),
+              elevation: 1,
+              icon: Image.asset(
+                "assets/img/more_btn.png",
+                width: 20,
+                height: 20,
+                color: Colors.white,
+              ),
+              padding: EdgeInsets.zero,
+              onSelected: (selectIndex) {
+                if (selectIndex == 9) {
+                  Get.to(() => const DriverModeView());
+                }
+              },
+              itemBuilder: (context) {
+                return [
+                  const PopupMenuItem(
+                    value: 1,
+                    height: 30,
+                    child: Text(
+                      "Social Share",
+                      style: TextStyle(fontSize: 12),
                     ),
-                    
-                    padding: EdgeInsets.zero,
-                    onSelected: (selectIndex) {
-                        if(selectIndex == 9) {
-                          Get.to( () => const DriverModeView() );
-                        }
-                    },
-                    itemBuilder: (context) {
-                      return [
-                        const PopupMenuItem(
-                          value: 1,
-                          height: 30,
-                          child: Text(
-                            "Social Share",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                        const PopupMenuItem(
-                          value: 2,
-                           height: 30,
-                          child: Text(
-                            "Playing Queue",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                         const PopupMenuItem(
-                          value: 3,
-                          height: 30,
-                          child: Text(
-                            "Add to playlist...",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                         const PopupMenuItem(
-                          value: 4,
-                           height: 30,
-                          child: Text(
-                            "Lyrics",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                         const PopupMenuItem(
-                          value: 5,
-                          height: 30,
-                          child: Text(
-                            "Volume",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                         const PopupMenuItem(
-                          value: 6,
-                          height: 30,
-                          child: Text(
-                            "Details",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                         const PopupMenuItem(
-                          value: 7,
-                          height: 30,
-                          child: Text(
-                            "Sleep timer",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                        const PopupMenuItem(
-                          value: 8,
-                          height: 30,
-                          child: Text(
-                            "Equaliser",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                        const PopupMenuItem(
-                          value: 9,
-                          height: 30,
-                          child: Text(
-                            "Driver mode",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                      ];
-                    }),
-             
-
-         
+                  ),
+                  const PopupMenuItem(
+                    value: 2,
+                    height: 30,
+                    child: Text(
+                      "Playing Queue",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 3,
+                    height: 30,
+                    child: Text(
+                      "Add to playlist...",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 4,
+                    height: 30,
+                    child: Text(
+                      "Lyrics",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 5,
+                    height: 30,
+                    child: Text(
+                      "Volume",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 6,
+                    height: 30,
+                    child: Text(
+                      "Details",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 7,
+                    height: 30,
+                    child: Text(
+                      "Sleep timer",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 8,
+                    height: 30,
+                    child: Text(
+                      "Equaliser",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 9,
+                    height: 30,
+                    child: Text(
+                      "Driver mode",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                ];
+              }),
         ],
       ),
       body: SingleChildScrollView(
@@ -224,7 +220,7 @@ class _MainPlayerViewState extends State<MainPlayerView> {
               height: 25,
             ),
             Text(
-              "Black or White",
+              "خالد بن ولید",
               style: TextStyle(
                   color: TColor.primaryText.withOpacity(0.9),
                   fontSize: 18,
@@ -234,7 +230,7 @@ class _MainPlayerViewState extends State<MainPlayerView> {
               height: 10,
             ),
             Text(
-              "Michael Jackson • Album - Dangerous",
+              "حسن انصاری • مجموعه -  داستان صحابه",
               style: TextStyle(color: TColor.secondaryText, fontSize: 12),
             ),
             const SizedBox(
@@ -300,7 +296,7 @@ class _MainPlayerViewState extends State<MainPlayerView> {
                     title: "Playlist",
                     icon: "assets/img/playlist.png",
                     onPressed: () {
-                      Get.to( () => const PlayPlayListView() );
+                      Get.to(() => const PlayPlayListView());
                     }),
                 PlayerBottomButton(
                     title: "Shuffle",
@@ -311,10 +307,8 @@ class _MainPlayerViewState extends State<MainPlayerView> {
                     icon: "assets/img/repeat.png",
                     onPressed: () {}),
                 PlayerBottomButton(
-                    title: "EQ",
-                    icon: "assets/img/eq.png",
-                    onPressed: () {}),
-                 PlayerBottomButton(
+                    title: "EQ", icon: "assets/img/eq.png", onPressed: () {}),
+                PlayerBottomButton(
                     title: "Favourites",
                     icon: "assets/img/fav.png",
                     onPressed: () {}),

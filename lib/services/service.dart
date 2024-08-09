@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:isar/isar.dart';
-import 'package:music_player/entities/author.dart';
-import 'package:music_player/entities/category.dart';
-import 'package:music_player/entities/collect.dart';
-import 'package:music_player/entities/item.dart';
-import 'package:music_player/entities/tag.dart';
+import 'package:SocialLib/entities/author.dart';
+import 'package:SocialLib/entities/category.dart';
+import 'package:SocialLib/entities/collect.dart';
+import 'package:SocialLib/entities/item.dart';
+import 'package:SocialLib/entities/tag.dart';
 import 'package:path_provider/path_provider.dart';
 
 late Isar isar;

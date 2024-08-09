@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_player/common_widget/player_bottom_button.dart';
-import 'package:music_player/view/main_player/play_playlist_view.dart';
+import 'package:SocialLib/common_widget/player_bottom_button.dart';
+import 'package:SocialLib/view/main_player/play_playlist_view.dart';
 
 import '../../common/color_extension.dart';
 
@@ -86,7 +86,7 @@ class _DriverModeViewState extends State<DriverModeView> {
               height: 50,
             ),
             Text(
-              "Black or White",
+              "بررسی امامت در قرآن",
               style: TextStyle(
                   color: TColor.primaryText.withOpacity(0.9),
                   fontSize: 18,
@@ -128,7 +128,6 @@ class _DriverModeViewState extends State<DriverModeView> {
                     "3:35",
                     style: TextStyle(color: TColor.primaryText60, fontSize: 12),
                   ),
-            
                   Text(
                     "4:26",
                     style: TextStyle(color: TColor.primaryText60, fontSize: 12),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_player/common_widget/artist_row.dart';
-import 'package:music_player/view/songs/artist_details_view.dart';
-import 'package:music_player/view_model/artists_view_model.dart';
+import 'package:SocialLib/common_widget/artist_row.dart';
+import 'package:SocialLib/view/songs/artist_details_view.dart';
+import 'package:SocialLib/view_model/artists_view_model.dart';
 
 class ArtistsView extends StatefulWidget {
   const ArtistsView({super.key});

@@ -1,7 +1,7 @@
 import 'package:isar/isar.dart';
-import 'package:music_player/entities/author.dart';
-import 'package:music_player/entities/category.dart';
-import 'package:music_player/entities/collect.dart';
+import 'package:SocialLib/entities/author.dart';
+import 'package:SocialLib/entities/category.dart';
+import 'package:SocialLib/entities/collect.dart';
 
 import 'tag.dart';
 part 'item.g.dart';

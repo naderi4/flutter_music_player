@@ -7,7 +7,11 @@ class ViewAllSection extends StatelessWidget {
   final String buttonTitle;
   final VoidCallback onPressed;
 
-  const ViewAllSection({super.key, required this.title, this.buttonTitle = "View All", required this.onPressed});
+  const ViewAllSection(
+      {super.key,
+      required this.title,
+      this.buttonTitle = "مشاهده همه",
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +28,11 @@ class ViewAllSection extends StatelessWidget {
                   fontWeight: FontWeight.w600),
             ),
           ),
-
-          TextButton(onPressed: onPressed , child: Text(
+          TextButton(
+              onPressed: onPressed,
+              child: Text(
                 buttonTitle,
-                style: TextStyle(
-                    color: TColor.org,
-                    fontSize: 11),
+                style: TextStyle(color: TColor.org, fontSize: 11),
               ))
         ],
       ),

@@ -2,10 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_player/common_widget/album_song_row.dart';
-import 'package:music_player/common_widget/artist_album_cell.dart';
-import 'package:music_player/common_widget/view_all_section.dart';
-import 'package:music_player/view_model/artists_view_model.dart';
+import 'package:SocialLib/common_widget/album_song_row.dart';
+import 'package:SocialLib/common_widget/artist_album_cell.dart';
+import 'package:SocialLib/common_widget/view_all_section.dart';
+import 'package:SocialLib/view_model/artists_view_model.dart';
 
 import '../../common/color_extension.dart';
 import '../../view_model/splash_view_model.dart';
@@ -39,7 +39,7 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
           ),
         ),
         title: Text(
-          "Artist Details",
+          "مشخصات نویسنده",
           style: TextStyle(
               color: TColor.primaryText80,
               fontSize: 17,
@@ -61,11 +61,11 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
         ],
       ),
       body: SingleChildScrollView(
-        child:  Column(
-            children: [
-              Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Stack(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Stack(
                 alignment: Alignment.center,
                 children: [
                   ClipRect(
@@ -91,13 +91,12 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            
                             Expanded(
                                 child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Dilon Bruce",
+                                  "حسن انصاری",
                                   style: TextStyle(
                                       color:
                                           TColor.primaryText.withOpacity(0.9),
@@ -108,14 +107,13 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
                                   height: 8,
                                 ),
                                 Text(
-                                  "Pop rock, Funk pop, Heavy Metal",
+                                  "نویسنده ، مترجم ،سخنران",
                                   style: TextStyle(
                                       color:
                                           TColor.primaryText.withOpacity(0.74),
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600),
                                 ),
-                                
                               ],
                             ))
                           ],
@@ -126,7 +124,6 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
@@ -139,18 +136,15 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600),
                                 ),
-
-                                 Text(
-                                  "Follwers",
+                                Text(
+                                  "دنبال کننده",
                                   style: TextStyle(
-                                      color:
-                                          TColor.primaryText60,
+                                      color: TColor.primaryText60,
                                       fontSize: 10,
                                       fontWeight: FontWeight.w600),
                                 ),
-
-                            ],),
-
+                              ],
+                            ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
@@ -164,7 +158,7 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Text(
-                                  "Listners",
+                                  "شنونده",
                                   style: TextStyle(
                                       color: TColor.primaryText60,
                                       fontSize: 10,
@@ -172,9 +166,6 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
                                 ),
                               ],
                             ),
-
-                            
-
                             InkWell(
                               borderRadius: BorderRadius.circular(17.5),
                               onTap: () {},
@@ -193,9 +184,8 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                   
                                     Text(
-                                      "Follow",
+                                      "دنبال کردن",
                                       style: TextStyle(
                                           color: TColor.primaryText
                                               .withOpacity(0.74),
@@ -206,54 +196,45 @@ class _ArtistDetailsViewState extends State<ArtistDetailsView> {
                                 ),
                               ),
                             ),
-                           
                           ],
                         )
                       ],
                     ),
                   )
                 ],
-              ),),
-
-              ViewAllSection(title: "Top Albums", onPressed: () {}),
-
-              SizedBox(
-                height: 130,
-                child: ListView.builder(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: artVM.albumsArr.length,
-                    itemBuilder: (context, index) {
-                      var aObj = artVM.albumsArr[index];
-                      return ArtistAlbumCell(aObj: aObj);
-                    }),
               ),
-
-
-
-              ViewAllSection(title: "Top Songs", onPressed: (){
-
-              }),
-
-              ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  itemCount: artVM.playedArr.length,
+            ),
+            ViewAllSection(title: "پرطرفدارترین مجموعه", onPressed: () {}),
+            SizedBox(
+              height: 130,
+              child: ListView.builder(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: artVM.albumsArr.length,
                   itemBuilder: (context, index) {
-                    var sObj = artVM.playedArr[index];
-                    return AlbumSongRow(
-                      sObj: sObj,
-                      onPressed: () {},
-                      onPressedPlay: () {},
-                      isPlay: index == 0,
-                    );
-                  })
-            ],
-          ),
+                    var aObj = artVM.albumsArr[index];
+                    return ArtistAlbumCell(aObj: aObj);
+                  }),
+            ),
+            ViewAllSection(title: "مشهورترین مطالب", onPressed: () {}),
+            ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                itemCount: artVM.playedArr.length,
+                itemBuilder: (context, index) {
+                  var sObj = artVM.playedArr[index];
+                  return AlbumSongRow(
+                    sObj: sObj,
+                    onPressed: () {},
+                    onPressedPlay: () {},
+                    isPlay: index == 0,
+                  );
+                })
+          ],
         ),
-      
+      ),
     );
   }
 }

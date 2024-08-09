@@ -10,11 +10,11 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
-import 'package:music_player/builder/articelBuilder.dart';
-import 'package:music_player/builder/audioBuilder.dart';
-import 'package:music_player/builder/gallery.dart';
-import 'package:music_player/builder/imageBuilder.dart';
-import 'package:music_player/builder/videoBuilder.dart';
+import 'package:SocialLib/builder/articelBuilder.dart';
+import 'package:SocialLib/builder/audioBuilder.dart';
+import 'package:SocialLib/builder/gallery.dart';
+import 'package:SocialLib/builder/imageBuilder.dart';
+import 'package:SocialLib/builder/videoBuilder.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
 import '../common/color_extension.dart';
@@ -67,6 +67,10 @@ class _articleFrom extends ConsumerState<ArticleFrom>
     super.initState();
     _controller = TextfieldTagsController();
     _tabController = TabController(vsync: this, length: 2);
+    _tabController?.addListener(() {
+      _tabIndex = _tabController?.index ?? 0;
+      setState(() {});
+    });
   }
 
   static Future<void> alert(String message, BuildContext context) async {
@@ -97,31 +101,32 @@ class _articleFrom extends ConsumerState<ArticleFrom>
     final state = ref.watch(itemProvider);
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text('ثبت مطلب جدید'),
-        ),
-        floatingActionButton: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
+        floatingActionButton: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //  crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              Semantics(
-                label: 'image_picker_example_from_gallery',
-                child: FloatingActionButton(
-                  onPressed: () {
-                    alert(
-                      'سند ذخیره شد',
-                      context,
-                    );
-                  },
-                  tooltip: 'ذخیره',
-                  child: const Icon(Icons.check),
-                ),
-              )
+              FloatingActionButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                tooltip: 'خروج',
+                child: const Icon(Icons.close),
+              ),
+              FloatingActionButton(
+                onPressed: () {
+                  alert(
+                    'سند ذخیره شد',
+                    context,
+                  );
+                },
+                tooltip: 'ذخیره',
+                child: const Icon(Icons.check),
+              ),
             ]),
         body: Directionality(
             textDirection: TextDirection.rtl,
             child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 10, 20, 30),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 30),
                 child: Center(
                     child: ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 500),
@@ -174,348 +179,415 @@ class _articleFrom extends ConsumerState<ArticleFrom>
                               child: Container(
                                   width: 200,
                                   height: 900,
-                                  child:
-                                      IndexedStack(index: _tabIndex, children: [
-                                    FormBuilder(
-                                      key: _formKey,
-                                      child: Column(
-                                        children: [
-                                          ListTile(
-                                            selected: true,
-                                            leading: const CircleAvatar(
-                                              backgroundColor: Color.fromARGB(
-                                                  255, 254, 254, 255),
-                                              child: Text(''),
-                                            ),
-                                            title: const Text('مجموعه'),
-                                            subtitle:
-                                                const Text('Item description'),
-                                            trailing: Icon(Icons.more_horiz),
-                                            shape: RoundedRectangleBorder(
-                                              side: BorderSide(
-                                                  color: Colors.white,
-                                                  width: 1),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                            ),
-                                            onTap: () async {
-                                              final res = await Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (BuildContext
-                                                              context) =>
-                                                          AlbumsView(
-                                                              selectmode: true),
-                                                      fullscreenDialog: false));
+                                  child: TabBarView(
+                                      controller: _tabController,
+                                      children: [
+                                        FormBuilder(
+                                          key: _formKey,
+                                          child: Column(
+                                            children: [
+                                              ListTile(
+                                                selected: true,
+                                                leading: const CircleAvatar(
+                                                  backgroundColor:
+                                                      Color.fromARGB(
+                                                          255, 254, 254, 255),
+                                                  child: Text(''),
+                                                ),
+                                                title: const Text('مجموعه'),
+                                                subtitle: const Text(
+                                                    'Item description'),
+                                                trailing:
+                                                    Icon(Icons.more_horiz),
+                                                shape: RoundedRectangleBorder(
+                                                  side: BorderSide(
+                                                      color: Colors.white,
+                                                      width: 1),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                                onTap: () async {
+                                                  final res = await Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              AlbumsView(
+                                                                  selectmode:
+                                                                      true),
+                                                          fullscreenDialog:
+                                                              false));
 
-                                              if (res != null) {}
-                                              setState(() {});
-                                            },
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          FormBuilderImagePicker(
-                                            name: 'photos',
-                                            previewAutoSizeWidth: true,
-                                            showDecoration: true,
-                                            previewMargin:
-                                                const EdgeInsetsDirectional
-                                                    .only(end: 8),
-                                            decoration: const InputDecoration(
-                                                labelText: 'انتخاب عکس'),
-                                            transformImageWidget:
-                                                (context, displayImage) => Card(
-                                              shape: const CircleBorder(),
-                                              clipBehavior: Clip.antiAlias,
-                                              child: SizedBox.expand(
-                                                child: displayImage,
+                                                  if (res != null) {}
+                                                  setState(() {});
+                                                },
                                               ),
-                                            ),
-                                            maxImages: 1,
-                                            fit: BoxFit.contain,
-                                            //backgroundColor: Colors.black54,
-                                            iconColor: Colors.white,
-                                            //icon: Icons.image,
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          FormBuilderTextField(
-                                            key: _nameFieldKey,
-                                            name: 'name',
-                                            decoration: const InputDecoration(
-                                              labelText: 'عنوان:',
-                                            ),
-                                            validator:
-                                                FormBuilderValidators.compose([
-                                              FormBuilderValidators.required(),
-                                            ]),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          SizedBox(
-                                              width: double.infinity,
-                                              height: 60,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              FormBuilderImagePicker(
+                                                name: 'photos',
+                                                previewAutoSizeWidth: true,
+                                                showDecoration: true,
+                                                previewMargin:
+                                                    const EdgeInsetsDirectional
+                                                        .only(end: 8),
+                                                decoration:
+                                                    const InputDecoration(
+                                                        labelText:
+                                                            'انتخاب عکس'),
+                                                transformImageWidget:
+                                                    (context, displayImage) =>
+                                                        Card(
+                                                  shape: const CircleBorder(),
+                                                  clipBehavior: Clip.antiAlias,
+                                                  child: SizedBox.expand(
+                                                    child: displayImage,
+                                                  ),
+                                                ),
+                                                maxImages: 1,
+                                                fit: BoxFit.contain,
+                                                //backgroundColor: Colors.black54,
+                                                iconColor: Colors.white,
+                                                //icon: Icons.image,
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              FormBuilderTextField(
+                                                key: _nameFieldKey,
+                                                name: 'name',
+                                                decoration:
+                                                    const InputDecoration(
+                                                  labelText: 'عنوان:',
+                                                ),
+                                                validator: FormBuilderValidators
+                                                    .compose([
+                                                  FormBuilderValidators
+                                                      .required(),
+                                                ]),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              SizedBox(
+                                                  width: double.infinity,
+                                                  height: 60,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Expanded(
+                                                          flex: 1,
+                                                          child:
+                                                              FormBuilderTextField(
+                                                            name: 'row',
+                                                            decoration:
+                                                                const InputDecoration(
+                                                              labelText:
+                                                                  'ردیف:',
+                                                              labelStyle:
+                                                                  TextStyle(
+                                                                fontSize: 17,
+                                                              ),
+                                                            ),
+                                                            validator:
+                                                                FormBuilderValidators
+                                                                    .compose([
+                                                              FormBuilderValidators
+                                                                  .required(),
+                                                            ]),
+                                                          )),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Expanded(
+                                                          flex: 2,
+                                                          child:
+                                                              FormBuilderTextField(
+                                                            name: 'length',
+                                                            decoration:
+                                                                const InputDecoration(
+                                                              labelText:
+                                                                  'تعداد/مدت(دقیه):',
+                                                              labelStyle:
+                                                                  TextStyle(
+                                                                fontSize: 17,
+                                                              ),
+                                                            ),
+                                                            validator:
+                                                                FormBuilderValidators
+                                                                    .compose([
+                                                              FormBuilderValidators
+                                                                  .required(),
+                                                            ]),
+                                                          )),
+                                                    ],
+                                                  )),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              // const Text('تگها'),
+                                              // TextFieldTags(
+                                              //   textfieldTagsController:
+                                              //       _controller,
+                                              //   initialTags: const [],
+                                              //   textSeparators: const [
+                                              //     ' ',
+                                              //     ','
+                                              //   ],
+                                              //   letterCase: LetterCase.normal,
+                                              //   validator: (String tag) {
+                                              //     if (tag == 'php') {
+                                              //       return 'No, please just no';
+                                              //     } else if (_controller
+                                              //         .getTags!
+                                              //         .contains(tag)) {
+                                              //       return 'you already entered that';
+                                              //     }
+                                              //     return null;
+                                              //   },
+                                              //   inputfieldBuilder: (context,
+                                              //       tec,
+                                              //       fn,
+                                              //       error,
+                                              //       onChanged,
+                                              //       onSubmitted) {
+                                              //     return ((context, sc, tags,
+                                              //         onTagDelete) {
+                                              //       return TextField(
+                                              //         controller: tec,
+                                              //         focusNode: fn,
+                                              //         decoration:
+                                              //             InputDecoration(
+                                              //           contentPadding:
+                                              //               const EdgeInsets
+                                              //                   .all(
+                                              //             10.0,
+                                              //           ),
+                                              //           isDense: true,
+                                              //           border:
+                                              //               const OutlineInputBorder(
+                                              //             borderSide:
+                                              //                 BorderSide(
+                                              //               color:
+                                              //                   Color.fromARGB(
+                                              //                       255,
+                                              //                       74,
+                                              //                       137,
+                                              //                       92),
+                                              //               width: 3.0,
+                                              //             ),
+                                              //           ),
+                                              //           focusedBorder:
+                                              //               const OutlineInputBorder(
+                                              //             borderSide:
+                                              //                 BorderSide(
+                                              //               color:
+                                              //                   Color.fromARGB(
+                                              //                       255,
+                                              //                       74,
+                                              //                       137,
+                                              //                       92),
+                                              //               width: 3.0,
+                                              //             ),
+                                              //           ),
+                                              //           // helperText: 'Enter language...',
+                                              //           helperStyle:
+                                              //               const TextStyle(
+                                              //             color: Color.fromARGB(
+                                              //                 255, 74, 137, 92),
+                                              //           ),
+                                              //           hintText: _controller
+                                              //                   .hasTags
+                                              //               ? ''
+                                              //               : "تگها را مشخص کنید",
+                                              //           hintStyle:
+                                              //               const TextStyle(
+                                              //                   color: Colors
+                                              //                       .white),
+                                              //           errorText: error,
+                                              //           prefixIconConstraints:
+                                              //               BoxConstraints(
+                                              //                   maxWidth:
+                                              //                       _distanceToField *
+                                              //                           0.74),
+                                              //           prefixIcon: tags
+                                              //                   .isNotEmpty
+                                              //               ? SingleChildScrollView(
+                                              //                   controller: sc,
+                                              //                   scrollDirection:
+                                              //                       Axis.vertical,
+                                              //                   child: Wrap(
+                                              //                       children: tags
+                                              //                           .map((String
+                                              //                               tag) {
+                                              //                     return Container(
+                                              //                       decoration:
+                                              //                           const BoxDecoration(
+                                              //                         borderRadius:
+                                              //                             BorderRadius
+                                              //                                 .all(
+                                              //                           Radius.circular(
+                                              //                               20.0),
+                                              //                         ),
+                                              //                         color: Color.fromARGB(
+                                              //                             255,
+                                              //                             74,
+                                              //                             137,
+                                              //                             92),
+                                              //                       ),
+                                              //                       margin: const EdgeInsets
+                                              //                           .symmetric(
+                                              //                           horizontal:
+                                              //                               5.0,
+                                              //                           vertical:
+                                              //                               4),
+                                              //                       padding: const EdgeInsets
+                                              //                           .symmetric(
+                                              //                           horizontal:
+                                              //                               10.0,
+                                              //                           vertical:
+                                              //                               5.0),
+                                              //                       child: Row(
+                                              //                         mainAxisAlignment:
+                                              //                             MainAxisAlignment
+                                              //                                 .start,
+                                              //                         mainAxisSize:
+                                              //                             MainAxisSize
+                                              //                                 .min,
+                                              //                         children: [
+                                              //                           InkWell(
+                                              //                             child:
+                                              //                                 Text(
+                                              //                               '#$tag',
+                                              //                               style:
+                                              //                                   const TextStyle(color: Colors.white),
+                                              //                             ),
+                                              //                             onTap:
+                                              //                                 () {
+                                              //                               print("$tag selected");
+                                              //                             },
+                                              //                           ),
+                                              //                           const SizedBox(
+                                              //                               width:
+                                              //                                   4.0),
+                                              //                           InkWell(
+                                              //                             child:
+                                              //                                 const Icon(
+                                              //                               Icons.cancel,
+                                              //                               size:
+                                              //                                   30.0,
+                                              //                               color: Color.fromARGB(
+                                              //                                   255,
+                                              //                                   233,
+                                              //                                   233,
+                                              //                                   233),
+                                              //                             ),
+                                              //                             onTap:
+                                              //                                 () {
+                                              //                               onTagDelete(tag);
+                                              //                             },
+                                              //                           )
+                                              //                         ],
+                                              //                       ),
+                                              //                     );
+                                              //                   }).toList()),
+                                              //                 )
+                                              //               : null,
+                                              //         ),
+                                              //         onChanged: onChanged,
+                                              //         onSubmitted: onSubmitted,
+                                              //       );
+                                              //     });
+                                              //   },
+                                              // ),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              FormBuilderChoiceChip<TypeItem>(
+                                                alignment: WrapAlignment.center,
+                                                name: 'type',
+                                                selectedColor: Colors.white,
+                                                backgroundColor:
+                                                    Colors.purple.shade100,
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                      flex: 1,
-                                                      child:
-                                                          FormBuilderTextField(
-                                                        name: 'row',
-                                                        decoration:
-                                                            const InputDecoration(
-                                                          labelText: 'ردیف:',
-                                                          labelStyle: TextStyle(
-                                                            fontSize: 17,
-                                                          ),
-                                                        ),
-                                                        validator:
-                                                            FormBuilderValidators
-                                                                .compose([
-                                                          FormBuilderValidators
-                                                              .required(),
-                                                        ]),
+                                                    WrapCrossAlignment.center,
+                                                decoration:
+                                                    const InputDecoration(
+                                                        label: Text(
+                                                  ' نوع محتوا: ',
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                )),
+                                                onChanged: (value) {
+                                                  // print(value);
+                                                  state.type = value!;
+                                                  setState(() {});
+                                                },
+                                                initialValue: state.type,
+                                                spacing: 20,
+                                                runSpacing: 10,
+                                                labelStyle: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 17),
+                                                options: const [
+                                                  FormBuilderChipOption(
+                                                      value: TypeItem.GALLERY,
+                                                      child: Row(
+                                                        children: [
+                                                          Text('آلبوم'),
+                                                          Spacer(),
+                                                          Icon(Icons.image)
+                                                        ],
                                                       )),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Expanded(
-                                                      flex: 2,
-                                                      child:
-                                                          FormBuilderTextField(
-                                                        name: 'length',
-                                                        decoration:
-                                                            const InputDecoration(
-                                                          labelText:
-                                                              'تعداد/مدت(دقیه):',
-                                                          labelStyle: TextStyle(
-                                                            fontSize: 17,
-                                                          ),
-                                                        ),
-                                                        validator:
-                                                            FormBuilderValidators
-                                                                .compose([
-                                                          FormBuilderValidators
-                                                              .required(),
-                                                        ]),
+                                                  FormBuilderChipOption(
+                                                      value: TypeItem.ARTICEL,
+                                                      child: Row(
+                                                        children: [
+                                                          Text('مقاله'),
+                                                          Spacer(),
+                                                          Icon(Icons.edit)
+                                                        ],
                                                       )),
+                                                  FormBuilderChipOption(
+                                                      value: TypeItem.VIDEO,
+                                                      child: Row(
+                                                        children: [
+                                                          Text('کلیپ'),
+                                                          Spacer(),
+                                                          Icon(Icons.videocam)
+                                                        ],
+                                                      )),
+                                                  FormBuilderChipOption(
+                                                      value: TypeItem.AUDIO,
+                                                      child: Row(
+                                                        children: [
+                                                          Text('صوتی'),
+                                                          Spacer(),
+                                                          Icon(Icons.music_note)
+                                                        ],
+                                                      ))
                                                 ],
-                                              )),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          // const Text('تگها'),
-                                          TextFieldTags(
-                                            textfieldTagsController:
-                                                _controller,
-                                            initialTags: const [],
-                                            textSeparators: const [' ', ','],
-                                            letterCase: LetterCase.normal,
-                                            validator: (String tag) {
-                                              if (tag == 'php') {
-                                                return 'No, please just no';
-                                              } else if (_controller.getTags!
-                                                  .contains(tag)) {
-                                                return 'you already entered that';
-                                              }
-                                              return null;
-                                            },
-                                            inputfieldBuilder: (context,
-                                                tec,
-                                                fn,
-                                                error,
-                                                onChanged,
-                                                onSubmitted) {
-                                              return ((context, sc, tags,
-                                                  onTagDelete) {
-                                                return TextField(
-                                                  controller: tec,
-                                                  focusNode: fn,
-                                                  decoration: InputDecoration(
-                                                    isDense: true,
-                                                    border:
-                                                        const OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color: Color.fromARGB(
-                                                            255, 74, 137, 92),
-                                                        width: 3.0,
-                                                      ),
-                                                    ),
-                                                    focusedBorder:
-                                                        const OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color: Color.fromARGB(
-                                                            255, 74, 137, 92),
-                                                        width: 3.0,
-                                                      ),
-                                                    ),
-                                                    // helperText: 'Enter language...',
-                                                    helperStyle:
-                                                        const TextStyle(
-                                                      color: Color.fromARGB(
-                                                          255, 74, 137, 92),
-                                                    ),
-                                                    hintText: _controller
-                                                            .hasTags
-                                                        ? ''
-                                                        : "تگها را مشخص کنید",
-                                                    hintStyle: const TextStyle(
-                                                        color: Colors.white),
-                                                    errorText: error,
-                                                    prefixIconConstraints:
-                                                        BoxConstraints(
-                                                            maxWidth:
-                                                                _distanceToField *
-                                                                    0.74),
-                                                    prefixIcon: tags.isNotEmpty
-                                                        ? SingleChildScrollView(
-                                                            controller: sc,
-                                                            scrollDirection:
-                                                                Axis.horizontal,
-                                                            child: Row(
-                                                                children: tags
-                                                                    .map((String
-                                                                        tag) {
-                                                              return Container(
-                                                                decoration:
-                                                                    const BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .all(
-                                                                    Radius.circular(
-                                                                        20.0),
-                                                                  ),
-                                                                  color: Color
-                                                                      .fromARGB(
-                                                                          255,
-                                                                          74,
-                                                                          137,
-                                                                          92),
-                                                                ),
-                                                                margin: const EdgeInsets
-                                                                    .symmetric(
-                                                                    horizontal:
-                                                                        5.0),
-                                                                padding: const EdgeInsets
-                                                                    .symmetric(
-                                                                    horizontal:
-                                                                        10.0,
-                                                                    vertical:
-                                                                        5.0),
-                                                                child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    InkWell(
-                                                                      child:
-                                                                          Text(
-                                                                        '#$tag',
-                                                                        style: const TextStyle(
-                                                                            color:
-                                                                                Colors.white),
-                                                                      ),
-                                                                      onTap:
-                                                                          () {
-                                                                        print(
-                                                                            "$tag selected");
-                                                                      },
-                                                                    ),
-                                                                    const SizedBox(
-                                                                        width:
-                                                                            4.0),
-                                                                    InkWell(
-                                                                      child:
-                                                                          const Icon(
-                                                                        Icons
-                                                                            .cancel,
-                                                                        size:
-                                                                            14.0,
-                                                                        color: Color.fromARGB(
-                                                                            255,
-                                                                            233,
-                                                                            233,
-                                                                            233),
-                                                                      ),
-                                                                      onTap:
-                                                                          () {
-                                                                        onTagDelete(
-                                                                            tag);
-                                                                      },
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              );
-                                                            }).toList()),
-                                                          )
-                                                        : null,
-                                                  ),
-                                                  onChanged: onChanged,
-                                                  onSubmitted: onSubmitted,
-                                                );
-                                              });
-                                            },
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          FormBuilderChoiceChip<TypeItem>(
-                                            alignment: WrapAlignment.center,
-                                            name: 'type',
-                                            selectedColor: Colors.white,
-                                            backgroundColor:
-                                                Colors.purple.shade100,
-                                            crossAxisAlignment:
-                                                WrapCrossAlignment.center,
-                                            // decoration:
-                                            //     const InputDecoration(prefix: Text(' نوع محتوا: ')),
-                                            onChanged: (value) {
-                                              // print(value);
-                                              state.type = value!;
-                                              setState(() {});
-                                            },
-                                            initialValue: TypeItem.GALLERY,
-                                            spacing: 5,
-                                            labelStyle: const TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 17),
-                                            options: const [
-                                              FormBuilderChipOption(
-                                                  value: TypeItem.GALLERY,
-                                                  child: Text('عکس')),
-                                              FormBuilderChipOption(
-                                                  value: TypeItem.ARTICEL,
-                                                  child: Text('نوشته')),
-                                              FormBuilderChipOption(
-                                                  value: TypeItem.VIDEO,
-                                                  child: Text('کلیپ')),
-                                              FormBuilderChipOption(
-                                                  value: TypeItem.AUDIO,
-                                                  child: Text('صوتی'))
+                                              ),
                                             ],
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                    //imageBuilder()
-                                    IndexedStack(
-                                      index: state.type.index,
-                                      children: [
-                                        gallerybuilder(images: []),
-                                        articelBuilder(),
-                                        videoBuilder(),
-                                        audioBuilder()
-                                      ],
-                                    )
-                                  ])))
+                                        ),
+                                        //imageBuilder()
+                                        IndexedStack(
+                                          index: state.type.index,
+                                          children: [
+                                            gallerybuilder(images: []),
+                                            articelBuilder(),
+                                            videoBuilder(),
+                                            audioBuilder()
+                                          ],
+                                        )
+                                      ])))
                         ]))))));
   }
 }

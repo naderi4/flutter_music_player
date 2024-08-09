@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:music_player/audio_helpers/page_manager.dart';
-import 'package:music_player/audio_helpers/service_locator.dart';
-import 'package:music_player/common/color_extension.dart';
-import 'package:music_player/view/splash_view.dart';
+import 'package:SocialLib/audio_helpers/page_manager.dart';
+import 'package:SocialLib/audio_helpers/service_locator.dart';
+import 'package:SocialLib/common/color_extension.dart';
+import 'package:SocialLib/view/splash_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'articel/editor.dart';
 import 'builder/articleFrom.dart';

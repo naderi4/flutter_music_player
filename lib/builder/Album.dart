@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:music_player/builder/Slider.dart';
+import 'package:SocialLib/builder/Slider.dart';
 
 class Album extends StatefulWidget {
   const Album({required this.url, required this.images});

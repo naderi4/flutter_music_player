@@ -175,7 +175,7 @@ class _videoBuilderState extends ConsumerState<videoBuilder> {
                           });
                         },
                         heroTag: 'imagesel2',
-                        tooltip: 'دوربین',
+                        tooltip: 'ویرایش',
                         child: const Icon(Icons.edit),
                       )),
                   // FloatingActionButton(
@@ -192,12 +192,14 @@ class _videoBuilderState extends ConsumerState<videoBuilder> {
                   // ),
                 ]),
           )),
-      Expanded(
-        flex: 6,
-        child: flickManager != null
-            ? Center(child: FlickVideoPlayer(flickManager: flickManager!))
-            : const Text(''),
-      ),
+      Visibility(
+          visible: flickManager != null,
+          child: Expanded(
+            flex: 6,
+            child: flickManager != null
+                ? Center(child: FlickVideoPlayer(flickManager: flickManager!))
+                : const Text(''),
+          )),
     ]));
   }
 }

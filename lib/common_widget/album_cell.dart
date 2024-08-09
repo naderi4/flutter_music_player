@@ -21,7 +21,7 @@ class AlbumCell extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AspectRatio(
-            aspectRatio: 1,
+            aspectRatio: 1.09,
             child: Image.asset(
               aObj["image"],
               width: double.maxFinite,
@@ -41,8 +41,8 @@ class AlbumCell extends StatelessWidget {
                   maxLines: 1,
                   style: TextStyle(
                       color: TColor.primaryText,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
               const SizedBox(
@@ -61,7 +61,6 @@ class AlbumCell extends StatelessWidget {
                       height: 12,
                       color: Colors.white,
                     ),
-                    
                     padding: EdgeInsets.zero,
                     onSelected: onPressedMenu,
                     itemBuilder: (context) {
@@ -76,13 +75,13 @@ class AlbumCell extends StatelessWidget {
                         ),
                         const PopupMenuItem(
                           value: 2,
-                           height: 30,
+                          height: 30,
                           child: Text(
                             "Play next",
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
-                         const PopupMenuItem(
+                        const PopupMenuItem(
                           value: 3,
                           height: 30,
                           child: Text(
@@ -90,15 +89,15 @@ class AlbumCell extends StatelessWidget {
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
-                         const PopupMenuItem(
+                        const PopupMenuItem(
                           value: 4,
-                           height: 30,
+                          height: 30,
                           child: Text(
                             "Add to playlist...",
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
-                         const PopupMenuItem(
+                        const PopupMenuItem(
                           value: 5,
                           height: 30,
                           child: Text(
@@ -106,7 +105,7 @@ class AlbumCell extends StatelessWidget {
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
-                         const PopupMenuItem(
+                        const PopupMenuItem(
                           value: 6,
                           height: 30,
                           child: Text(
@@ -114,7 +113,7 @@ class AlbumCell extends StatelessWidget {
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
-                         const PopupMenuItem(
+                        const PopupMenuItem(
                           value: 7,
                           height: 30,
                           child: Text(
@@ -153,18 +152,18 @@ class AlbumCell extends StatelessWidget {
                 child: Text(
                   aObj["artists"],
                   maxLines: 1,
-                  style: TextStyle(color: TColor.lightGray, fontSize: 11),
+                  style: TextStyle(color: TColor.lightGray, fontSize: 14),
                 ),
               ),
               Text(
                 " • ",
                 maxLines: 1,
-                style: TextStyle(color: TColor.lightGray, fontSize: 11),
+                style: TextStyle(color: TColor.lightGray, fontSize: 14),
               ),
               Text(
                 aObj["songs"],
                 maxLines: 1,
-                style: TextStyle(color: TColor.lightGray, fontSize: 11),
+                style: TextStyle(color: TColor.lightGray, fontSize: 14),
               ),
             ],
           ),

@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:audio_service/audio_service.dart';
-import 'package:music_player/audio_helpers/mediaitem_converter.dart';
-import 'package:music_player/audio_helpers/page_manager.dart';
-import 'package:music_player/audio_helpers/service_locator.dart';
+import 'package:SocialLib/audio_helpers/mediaitem_converter.dart';
+import 'package:SocialLib/audio_helpers/page_manager.dart';
+import 'package:SocialLib/audio_helpers/service_locator.dart';
 
 DateTime playerTapTime = DateTime.now();
 bool get isProcessForPlay {
@@ -16,8 +16,7 @@ Timer? debounce;
 void playerPlayProcessDebounce(List songsList, int index) {
   debounce?.cancel();
   debounce = Timer(const Duration(milliseconds: 600), () {
-      PlayerInvoke.init(songsList: songsList, index: index);
-
+    PlayerInvoke.init(songsList: songsList, index: index);
   });
 }
 
@@ -64,11 +63,9 @@ class PlayerInvoke {
     try {
       await pageManager.setShuffleMode(AudioServiceShuffleMode.none);
       await pageManager.adds(queue, index);
-      await pageManager.playAS();  
+      await pageManager.playAS();
     } catch (e) {
-
       print("error: $e");
-      
     }
   }
 }

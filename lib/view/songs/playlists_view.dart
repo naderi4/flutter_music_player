@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_player/common_widget/my_playlist_cell.dart';
-import 'package:music_player/common_widget/playlist_songs_cell.dart';
-import 'package:music_player/common_widget/view_all_section.dart';
-import 'package:music_player/view_model/playlists_view_model.dart';
+import 'package:SocialLib/common_widget/my_playlist_cell.dart';
+import 'package:SocialLib/common_widget/playlist_songs_cell.dart';
+import 'package:SocialLib/common_widget/view_all_section.dart';
+import 'package:SocialLib/view_model/playlists_view_model.dart';
 
 class PlaylistsView extends StatefulWidget {
   const PlaylistsView({super.key});

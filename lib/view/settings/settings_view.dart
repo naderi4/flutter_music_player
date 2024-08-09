@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_player/common_widget/icon_text_row.dart';
-import 'package:music_player/view_model/splash_view_model.dart';
+import 'package:SocialLib/common_widget/icon_text_row.dart';
+import 'package:SocialLib/view_model/splash_view_model.dart';
 
 import '../../common/color_extension.dart';
 
@@ -65,7 +65,6 @@ class _SettingsViewState extends State<SettingsView> {
             icon: "assets/img/s_menu.png",
             onTap: () {},
           ),
-
           IconTextRow(
             title: "Other",
             icon: "assets/img/s_other.png",

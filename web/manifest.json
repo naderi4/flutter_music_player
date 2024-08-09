@@ -1,6 +1,6 @@
 {
-    "name": "flutter_music_player",
-    "short_name": "flutter_music_player",
+    "name": "Library",
+    "short_name": "Library",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

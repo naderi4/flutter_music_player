@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_player/common/color_extension.dart';
-import 'package:music_player/common_widget/recommended_cell.dart';
-import 'package:music_player/common_widget/title_section.dart';
-import 'package:music_player/view_model/splash_view_model.dart';
+import 'package:SocialLib/common/color_extension.dart';
+import 'package:SocialLib/common_widget/recommended_cell.dart';
+import 'package:SocialLib/common_widget/title_section.dart';
+import 'package:SocialLib/view_model/splash_view_model.dart';
 
 import '../../common_widget/playlist_cell.dart';
 import '../../common_widget/songs_row.dart';

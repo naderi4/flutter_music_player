@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:music_player/view_model/splash_view_model.dart';
+import 'package:SocialLib/view_model/splash_view_model.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -11,8 +11,7 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-
-  final splashVM = Get.put( SplashViewMode() );
+  final splashVM = Get.put(SplashViewMode());
 
   @override
   void initState() {
@@ -25,9 +24,11 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     var media = MediaQuery.sizeOf(context);
     return Scaffold(
-
       body: Center(
-        child: Image.asset("assets/img/app_logo.png", width: media.width * 0.30, ),
+        child: Image.asset(
+          "assets/img/app_logo.png",
+          width: media.width * 0.30,
+        ),
       ),
     );
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_player/common_widget/album_cell.dart';
-import 'package:music_player/view/songs/album_details_view.dart';
-import 'package:music_player/view_model/albums_view_model.dart';
+import 'package:SocialLib/common_widget/album_cell.dart';
+import 'package:SocialLib/view/songs/album_details_view.dart';
+import 'package:SocialLib/view_model/albums_view_model.dart';
 
 class AlbumsView extends StatefulWidget {
   const AlbumsView({super.key, this.selectmode = false});

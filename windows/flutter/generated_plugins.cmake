@@ -4,8 +4,13 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   audioplayers_windows
+  desktop_drop
   file_selector_windows
+  gal
+  irondash_engine_context
   isar_flutter_libs
+  share_plus
+  super_native_extensions
   url_launcher_windows
 )
 

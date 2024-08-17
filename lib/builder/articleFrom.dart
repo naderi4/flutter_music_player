@@ -40,7 +40,7 @@ class _articleFrom extends ConsumerState<ArticleFrom>
   ItemInfo item = ItemInfo.newone();
 
   late double _distanceToField;
-  late TextfieldTagsController _controller;
+  late StringTagController _stringTagController;
 
   // final controller = MultiImagePickerController(
   //   maxImages: 10,
@@ -57,7 +57,7 @@ class _articleFrom extends ConsumerState<ArticleFrom>
   @override
   void dispose() {
     //controller.dispose();
-    _controller.dispose();
+    _stringTagController.dispose();
     _tabController.dispose();
     super.dispose();
   }
@@ -65,7 +65,7 @@ class _articleFrom extends ConsumerState<ArticleFrom>
   @override
   void initState() {
     super.initState();
-    _controller = TextfieldTagsController();
+    _stringTagController = StringTagController();
     _tabController = TabController(vsync: this, length: 2);
     _tabController?.addListener(() {
       _tabIndex = _tabController?.index ?? 0;
@@ -106,6 +106,7 @@ class _articleFrom extends ConsumerState<ArticleFrom>
             //  crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               FloatingActionButton(
+                heroTag: 'exithero',
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -113,6 +114,7 @@ class _articleFrom extends ConsumerState<ArticleFrom>
                 child: const Icon(Icons.close),
               ),
               FloatingActionButton(
+                heroTag: 'savehero',
                 onPressed: () {
                   alert(
                     'سند ذخیره شد',
@@ -129,7 +131,7 @@ class _articleFrom extends ConsumerState<ArticleFrom>
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 30),
                 child: Center(
                     child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 500),
+                        constraints: const BoxConstraints(maxWidth: 1200),
                         child: CustomScrollView(slivers: [
                           SliverToBoxAdapter(
                               child: TabBar(
@@ -330,180 +332,183 @@ class _articleFrom extends ConsumerState<ArticleFrom>
                                               const SizedBox(
                                                 height: 20,
                                               ),
-                                              // const Text('تگها'),
-                                              // TextFieldTags(
-                                              //   textfieldTagsController:
-                                              //       _controller,
-                                              //   initialTags: const [],
-                                              //   textSeparators: const [
-                                              //     ' ',
-                                              //     ','
-                                              //   ],
-                                              //   letterCase: LetterCase.normal,
-                                              //   validator: (String tag) {
-                                              //     if (tag == 'php') {
-                                              //       return 'No, please just no';
-                                              //     } else if (_controller
-                                              //         .getTags!
-                                              //         .contains(tag)) {
-                                              //       return 'you already entered that';
-                                              //     }
-                                              //     return null;
+                                              //const Text('تگها'),
+                                              TextFieldTags<String>(
+                                                textfieldTagsController:
+                                                    _stringTagController,
+                                                initialTags: [],
+                                                textSeparators: const [
+                                                  ' ',
+                                                  ','
+                                                ],
+                                                letterCase: LetterCase.normal,
+                                                validator: (String tag) {
+                                                  if (tag == 'php') {
+                                                    return 'No, please just no';
+                                                  } else if (_stringTagController
+                                                      .getTags!
+                                                      .contains(tag)) {
+                                                    return 'You\'ve already entered that';
+                                                  }
+                                                  return null;
+                                                },
+                                                inputFieldBuilder: (context,
+                                                    inputFieldValues) {
+                                                  return Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 10.0),
+                                                    child: TextField(
+                                                      onTap: () {
+                                                        _stringTagController
+                                                            .getFocusNode
+                                                            ?.requestFocus();
+                                                      },
+                                                      controller: inputFieldValues
+                                                          .textEditingController,
+                                                      focusNode:
+                                                          inputFieldValues
+                                                              .focusNode,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        isDense: true,
+                                                        border:
+                                                            const OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    74,
+                                                                    137,
+                                                                    92),
+                                                            width: 3.0,
+                                                          ),
+                                                        ),
+                                                        focusedBorder:
+                                                            const OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    74,
+                                                                    137,
+                                                                    92),
+                                                            width: 3.0,
+                                                          ),
+                                                        ),
+                                                        helperText: '',
+                                                        helperStyle:
+                                                            const TextStyle(
+                                                          color: Color.fromARGB(
+                                                              255, 74, 137, 92),
+                                                        ),
+                                                        hintText: inputFieldValues
+                                                                .tags.isNotEmpty
+                                                            ? ''
+                                                            : "تگی را وارد کنید...",
+                                                        errorText:
+                                                            inputFieldValues
+                                                                .error,
+                                                        prefixIconConstraints:
+                                                            BoxConstraints(
+                                                                maxWidth:
+                                                                    _distanceToField *
+                                                                        0.8),
+                                                        prefixIcon:
+                                                            inputFieldValues
+                                                                    .tags
+                                                                    .isNotEmpty
+                                                                ? SingleChildScrollView(
+                                                                    controller:
+                                                                        inputFieldValues
+                                                                            .tagScrollController,
+                                                                    scrollDirection:
+                                                                        Axis.vertical,
+                                                                    child:
+                                                                        Padding(
+                                                                      padding:
+                                                                          const EdgeInsets
+                                                                              .only(
+                                                                        top: 8,
+                                                                        bottom:
+                                                                            8,
+                                                                        left: 8,
+                                                                      ),
+                                                                      child: Wrap(
+                                                                          runSpacing: 4.0,
+                                                                          spacing: 4.0,
+                                                                          children: inputFieldValues.tags.map((String tag) {
+                                                                            return Container(
+                                                                              decoration: const BoxDecoration(
+                                                                                borderRadius: BorderRadius.all(
+                                                                                  Radius.circular(20.0),
+                                                                                ),
+                                                                                color: Color.fromARGB(255, 74, 137, 92),
+                                                                              ),
+                                                                              margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                                                                              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                                                                              child: Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                                                mainAxisSize: MainAxisSize.min,
+                                                                                children: [
+                                                                                  InkWell(
+                                                                                    child: Text(
+                                                                                      '#$tag',
+                                                                                      style: const TextStyle(color: Colors.white),
+                                                                                    ),
+                                                                                    onTap: () {
+                                                                                      //print("$tag selected");
+                                                                                    },
+                                                                                  ),
+                                                                                  const SizedBox(width: 4.0),
+                                                                                  InkWell(
+                                                                                    child: const Icon(
+                                                                                      Icons.cancel,
+                                                                                      size: 14.0,
+                                                                                      color: Color.fromARGB(255, 233, 233, 233),
+                                                                                    ),
+                                                                                    onTap: () {
+                                                                                      inputFieldValues.onTagRemoved(tag);
+                                                                                    },
+                                                                                  )
+                                                                                ],
+                                                                              ),
+                                                                            );
+                                                                          }).toList()),
+                                                                    ),
+                                                                  )
+                                                                : null,
+                                                      ),
+                                                      onChanged:
+                                                          inputFieldValues
+                                                              .onTagChanged,
+                                                      onSubmitted:
+                                                          inputFieldValues
+                                                              .onTagSubmitted,
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                              // ElevatedButton(
+                                              //   style: ButtonStyle(
+                                              //     backgroundColor:
+                                              //         MaterialStateProperty.all<
+                                              //             Color>(
+                                              //       const Color.fromARGB(
+                                              //           255, 74, 137, 92),
+                                              //     ),
+                                              //   ),
+                                              //   onPressed: () {
+                                              //     _stringTagController
+                                              //         .clearTags();
                                               //   },
-                                              //   inputfieldBuilder: (context,
-                                              //       tec,
-                                              //       fn,
-                                              //       error,
-                                              //       onChanged,
-                                              //       onSubmitted) {
-                                              //     return ((context, sc, tags,
-                                              //         onTagDelete) {
-                                              //       return TextField(
-                                              //         controller: tec,
-                                              //         focusNode: fn,
-                                              //         decoration:
-                                              //             InputDecoration(
-                                              //           contentPadding:
-                                              //               const EdgeInsets
-                                              //                   .all(
-                                              //             10.0,
-                                              //           ),
-                                              //           isDense: true,
-                                              //           border:
-                                              //               const OutlineInputBorder(
-                                              //             borderSide:
-                                              //                 BorderSide(
-                                              //               color:
-                                              //                   Color.fromARGB(
-                                              //                       255,
-                                              //                       74,
-                                              //                       137,
-                                              //                       92),
-                                              //               width: 3.0,
-                                              //             ),
-                                              //           ),
-                                              //           focusedBorder:
-                                              //               const OutlineInputBorder(
-                                              //             borderSide:
-                                              //                 BorderSide(
-                                              //               color:
-                                              //                   Color.fromARGB(
-                                              //                       255,
-                                              //                       74,
-                                              //                       137,
-                                              //                       92),
-                                              //               width: 3.0,
-                                              //             ),
-                                              //           ),
-                                              //           // helperText: 'Enter language...',
-                                              //           helperStyle:
-                                              //               const TextStyle(
-                                              //             color: Color.fromARGB(
-                                              //                 255, 74, 137, 92),
-                                              //           ),
-                                              //           hintText: _controller
-                                              //                   .hasTags
-                                              //               ? ''
-                                              //               : "تگها را مشخص کنید",
-                                              //           hintStyle:
-                                              //               const TextStyle(
-                                              //                   color: Colors
-                                              //                       .white),
-                                              //           errorText: error,
-                                              //           prefixIconConstraints:
-                                              //               BoxConstraints(
-                                              //                   maxWidth:
-                                              //                       _distanceToField *
-                                              //                           0.74),
-                                              //           prefixIcon: tags
-                                              //                   .isNotEmpty
-                                              //               ? SingleChildScrollView(
-                                              //                   controller: sc,
-                                              //                   scrollDirection:
-                                              //                       Axis.vertical,
-                                              //                   child: Wrap(
-                                              //                       children: tags
-                                              //                           .map((String
-                                              //                               tag) {
-                                              //                     return Container(
-                                              //                       decoration:
-                                              //                           const BoxDecoration(
-                                              //                         borderRadius:
-                                              //                             BorderRadius
-                                              //                                 .all(
-                                              //                           Radius.circular(
-                                              //                               20.0),
-                                              //                         ),
-                                              //                         color: Color.fromARGB(
-                                              //                             255,
-                                              //                             74,
-                                              //                             137,
-                                              //                             92),
-                                              //                       ),
-                                              //                       margin: const EdgeInsets
-                                              //                           .symmetric(
-                                              //                           horizontal:
-                                              //                               5.0,
-                                              //                           vertical:
-                                              //                               4),
-                                              //                       padding: const EdgeInsets
-                                              //                           .symmetric(
-                                              //                           horizontal:
-                                              //                               10.0,
-                                              //                           vertical:
-                                              //                               5.0),
-                                              //                       child: Row(
-                                              //                         mainAxisAlignment:
-                                              //                             MainAxisAlignment
-                                              //                                 .start,
-                                              //                         mainAxisSize:
-                                              //                             MainAxisSize
-                                              //                                 .min,
-                                              //                         children: [
-                                              //                           InkWell(
-                                              //                             child:
-                                              //                                 Text(
-                                              //                               '#$tag',
-                                              //                               style:
-                                              //                                   const TextStyle(color: Colors.white),
-                                              //                             ),
-                                              //                             onTap:
-                                              //                                 () {
-                                              //                               print("$tag selected");
-                                              //                             },
-                                              //                           ),
-                                              //                           const SizedBox(
-                                              //                               width:
-                                              //                                   4.0),
-                                              //                           InkWell(
-                                              //                             child:
-                                              //                                 const Icon(
-                                              //                               Icons.cancel,
-                                              //                               size:
-                                              //                                   30.0,
-                                              //                               color: Color.fromARGB(
-                                              //                                   255,
-                                              //                                   233,
-                                              //                                   233,
-                                              //                                   233),
-                                              //                             ),
-                                              //                             onTap:
-                                              //                                 () {
-                                              //                               onTagDelete(tag);
-                                              //                             },
-                                              //                           )
-                                              //                         ],
-                                              //                       ),
-                                              //                     );
-                                              //                   }).toList()),
-                                              //                 )
-                                              //               : null,
-                                              //         ),
-                                              //         onChanged: onChanged,
-                                              //         onSubmitted: onSubmitted,
-                                              //       );
-                                              //     });
-                                              //   },
+                                              //   child: const Text(
+                                              //     'پاک کردن تگها',
+                                              //     style: TextStyle(
+                                              //         color: Colors.white),
+                                              //   ),
                                               // ),
                                               const SizedBox(
                                                 height: 20,

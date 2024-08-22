@@ -102,8 +102,8 @@ class _articleFrom extends ConsumerState<ArticleFrom>
 
     return Scaffold(
         floatingActionButton: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //  crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               FloatingActionButton(
                 heroTag: 'exithero',
@@ -112,6 +112,9 @@ class _articleFrom extends ConsumerState<ArticleFrom>
                 },
                 tooltip: 'خروج',
                 child: const Icon(Icons.close),
+              ),
+              const SizedBox(
+                width: 10,
               ),
               FloatingActionButton(
                 heroTag: 'savehero',
@@ -128,7 +131,7 @@ class _articleFrom extends ConsumerState<ArticleFrom>
         body: Directionality(
             textDirection: TextDirection.rtl,
             child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 30),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 15),
                 child: Center(
                     child: ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 1200),

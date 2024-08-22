@@ -11,7 +11,7 @@ import 'package:SocialLib/view/splash_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'articel/editor.dart';
+//import 'articel/editor.dart';
 import 'builder/articleFrom.dart';
 import 'settings/cubit/settings_cubit.dart';
 import 'view/songs/songs_view.dart';

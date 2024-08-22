@@ -228,8 +228,9 @@ class _Slider extends State<SliderPhoto> {
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) => Album(
-                                    url: url,
+                                    //   url: url,
                                     images: widget.images,
+                                    titel: '',
                                   ),
                               fullscreenDialog: false));
                     },

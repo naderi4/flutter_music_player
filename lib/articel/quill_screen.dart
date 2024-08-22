@@ -19,12 +19,16 @@ class QuillScreenArgs {
 }
 
 class QuillScreen extends StatefulWidget {
-  const QuillScreen({
+  QuillScreen({
     required this.args,
+    required this.titel,
+    this.viewMode = false,
     super.key,
   });
 
   final QuillScreenArgs args;
+  bool viewMode;
+  final String titel;
 
   static const routeName = '/quill';
 
@@ -37,12 +41,13 @@ class _QuillScreenState extends State<QuillScreen> {
   final _controller = QuillController.basic();
   final _editorFocusNode = FocusNode();
   final _editorScrollController = ScrollController();
-  var _isReadOnly = false;
+  bool _isReadOnly = false;
 
   @override
   void initState() {
     super.initState();
     _controller.document = widget.args.document;
+    _isReadOnly = widget.viewMode;
   }
 
   @override
@@ -57,40 +62,42 @@ class _QuillScreenState extends State<QuillScreen> {
   Widget build(BuildContext context) {
     _controller.readOnly = _isReadOnly;
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Flutter Quill'),
-      //   actions: [
-      //     IconButton(
-      //       tooltip: 'Share',
-      //       onPressed: () {
-      //         final plainText = _controller.document.toPlainText(
-      //           FlutterQuillEmbeds.defaultEditorBuilders(),
-      //         );
-      //         if (plainText.trim().isEmpty) {
-      //           ScaffoldMessenger.of(context).showText(
-      //             "We can't share empty document, please enter some text first",
-      //           );
-      //           return;
-      //         }
-      //         Share.share(plainText);
-      //       },
-      //       icon: const Icon(Icons.share),
-      //     ),
-      //     IconButton(
-      //       tooltip: 'Print to log',
-      //       onPressed: () {
-      //         debugPrint(
-      //           jsonEncode(_controller.document.toDelta().toJson()),
-      //         );
-      //         ScaffoldMessenger.of(context).showText(
-      //           'The quill delta json has been printed to the log.',
-      //         );
-      //       },
-      //       icon: const Icon(Icons.print),
-      //     ),
-      //     // const HomeScreenButton(),
-      //   ],
-      // ),
+      appBar: !widget.viewMode
+          ? null
+          : AppBar(
+              title: Text(widget.titel),
+              actions: [
+                IconButton(
+                  tooltip: 'Share',
+                  onPressed: () {
+                    final plainText = _controller.document.toPlainText(
+                      FlutterQuillEmbeds.defaultEditorBuilders(),
+                    );
+                    if (plainText.trim().isEmpty) {
+                      ScaffoldMessenger.of(context).showText(
+                        "We can't share empty document, please enter some text first",
+                      );
+                      return;
+                    }
+                    Share.share(plainText);
+                  },
+                  icon: const Icon(Icons.share),
+                ),
+                IconButton(
+                  tooltip: 'Print to log',
+                  onPressed: () {
+                    debugPrint(
+                      jsonEncode(_controller.document.toDelta().toJson()),
+                    );
+                    ScaffoldMessenger.of(context).showText(
+                      'The quill delta json has been printed to the log.',
+                    );
+                  },
+                  icon: const Icon(Icons.print),
+                ),
+                // const HomeScreenButton(),
+              ],
+            ),
       body: Column(
         children: [
           if (!_isReadOnly)
@@ -117,10 +124,19 @@ class _QuillScreenState extends State<QuillScreen> {
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(_isReadOnly ? Icons.lock : Icons.edit),
-      //   onPressed: () => setState(() => _isReadOnly = !_isReadOnly),
-      // ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          // FloatingActionButton(
+          //   child: Icon(_isReadOnly ? Icons.close : Icons.close),
+          //   onPressed: () => {},
+          // ),
+          FloatingActionButton(
+            child: Icon(_isReadOnly ? Icons.lock : Icons.edit),
+            onPressed: () => setState(() => _isReadOnly = !_isReadOnly),
+          )
+        ],
+      ),
     );
   }
 

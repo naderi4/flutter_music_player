@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.codeforany" "\0"
-            VALUE "FileDescription", "flutter_music_player" "\0"
+            VALUE "FileDescription", "sociallib" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "flutter_music_player" "\0"
+            VALUE "InternalName", "sociallib" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.codeforany. All rights reserved." "\0"
-            VALUE "OriginalFilename", "flutter_music_player.exe" "\0"
-            VALUE "ProductName", "flutter_music_player" "\0"
+            VALUE "OriginalFilename", "sociallib.exe" "\0"
+            VALUE "ProductName", "sociallib" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

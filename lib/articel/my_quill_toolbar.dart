@@ -78,8 +78,8 @@ class MyQuillToolbar extends StatelessWidget {
       controller.insertImageBlock(imageSource: image);
       return;
     }
-    final newSavedImage = await saveImage(io.File(image));
-    controller.insertImageBlock(imageSource: newSavedImage);
+    //final newSavedImage = await saveImage(io.File(image));
+    controller.insertImageBlock(imageSource: image);
   }
 
   /// For mobile platforms it will copies the picked file from temporary cache
@@ -90,10 +90,14 @@ class MyQuillToolbar extends StatelessWidget {
     final appDocDir = await getApplicationDocumentsDirectory();
     final fileExt = path.extension(file.path);
     final newFileName = '${DateTime.now().toIso8601String()}$fileExt';
-    final newPath = path.join(
-      appDocDir.path,
-      newFileName,
-    );
+    const letter = '\\';
+    const newLetter = '/';
+    final newPath = path
+        .join(
+          appDocDir.path,
+          newFileName,
+        )
+        .replaceAll(letter, newLetter);
     final copiedFile = await file.copy(newPath);
     return copiedFile.path;
   }

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_painter_2/flutter_painter_2.dart';
+import 'package:flutter_painter_v2/flutter_painter.dart';
 
 import 'dart:ui' as ui;
 

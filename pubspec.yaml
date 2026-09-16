@@ -39,11 +39,11 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   sleek_circular_slider: ^2.0.1
   audio_service: ^0.18.11
-  just_audio: ^0.9.34
-  get_it: ^7.6.0
+  just_audio: ^0.10.5
+  get_it: ^8.2.0
   cached_network_image: ^3.2.3
   auto_size_text: ^3.0.0
-  responsive_framework: ^0.2.0
+  responsive_framework: ^1.5.1
   #textfield_tags: ^3.0.1
 
   textfield_tags:
@@ -51,16 +51,16 @@ dependencies:
       url: https://github.com/lionelmennig/textfield_tags.git
       ref: fixes/allow-controller-re-registration
 
-  file_picker: ^5.2.10
+  file_picker: ^10.3.3
   image_picker: ^1.0.4
-  flutter_form_builder: ^9.0.0
-  form_builder_validators: ^9.0.0
-  flutter_painter_2: ^2.0.1
+  flutter_form_builder: ^10.1.0
+  form_builder_validators: ^11.2.0
+  flutter_painter_v2: ^2.1.0
   phosphor_flutter: ^2.0.0
   image_picker_plus: ^0.5.6+2
-  multi_image_picker_view: ^0.0.15
+  multi_image_picker_view: ^3.0.0
   flutter_draggable_gridview: ^0.0.8
-  extended_image: ^8.2.1
+  extended_image: ^10.0.1
   hooks_riverpod: ^2.3.6
   video_editor_2: ^3.0.2
   video_thumbnail: ^0.5.3
@@ -81,17 +81,18 @@ dependencies:
   easy_audio_trimmer: ^1.0.2+4
   flutter_quill: ^10.2.0
   flutter_quill_extensions :  ^10.2.0
-  share_plus: ^10.0.0
-  desktop_drop: ^0.4.4
+  share_plus: ^12.0.0
+  desktop_drop: ^0.6.1
   google_fonts: ^6.2.1
-  flutter_bloc: ^8.1.6
-  image_cropper: ^8.0.2
-  hydrated_bloc: ^9.1.5
-  video_player_win: ^2.3.10
+  flutter_bloc: ^9.1.1
+  image_cropper: ^9.1.0
+  hydrated_bloc: ^10.1.1
+  video_player_win: ^3.2.0
+  
 
 dependency_overrides:
   intl: 0.19.0   
-
+  photo_manager: ^2.8.2
 
 dev_dependencies:
   flutter_test:
@@ -106,7 +107,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

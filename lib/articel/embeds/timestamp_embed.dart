@@ -32,13 +32,16 @@ class TimeStampEmbedBuilderWidget extends EmbedBuilder {
     QuillController controller,
     Embed node,
     bool readOnly,
-    bool inline,
+    bool selected,
     TextStyle textStyle,
   ) {
     return Row(
       children: [
         const Icon(Icons.access_time_rounded),
-        Text(node.value.data as String),
+        Text(
+          node.value.data as String,
+          style: textStyle,
+        ),
       ],
     );
   }

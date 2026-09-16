@@ -19,7 +19,6 @@ import 'package:textfield_tags/textfield_tags.dart';
 
 import '../common/color_extension.dart';
 import '../entities/item.dart';
-import '../locale_provider.dart';
 import '../services/service.dart';
 import '../view/songs/albums_view.dart';
 import 'Slider.dart';
@@ -516,7 +515,7 @@ class _articleFrom extends ConsumerState<ArticleFrom>
                                               const SizedBox(
                                                 height: 20,
                                               ),
-                                              FormBuilderChoiceChip<TypeItem>(
+                                              FormBuilderChoiceChips<TypeItem>(
                                                 alignment: WrapAlignment.center,
                                                 name: 'type',
                                                 selectedColor: Colors.white,

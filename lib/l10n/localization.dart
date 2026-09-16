@@ -1,7 +1,15 @@
+import 'package:SocialLib/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+class L10n {
+  static final all = [
+    const Locale('en'),
+    const Locale('fa', 'IR'),
+    const Locale('ar'),
+    const Locale('ps'),
+  ];
+}
 
 class Localization {
   static final Localization _instance = Localization._internal();
@@ -30,27 +38,3 @@ class Localization {
     _current = null;
   }
 }
-
-class LocaleState extends StateNotifier<Locale> {
-  LocaleState(String lang) : super(Locale(lang));
-
-  void setLocale(Locale loc) {
-    state = loc;
-    Localization.setCurrent(loc);
-  }
-}
-
-final localeStateProvider = StateNotifierProvider<LocaleState, Locale>((ref) {
-  return LocaleState('fa');
-});
-
-// class LocaleNotifier extends ChangeNotifier {
-//   final Ref _ref;
-
-//   LocaleNotifier(this._ref) {
-//     _ref.listen<Locale>(
-//       localeStateProvider,
-//       (_, __) => notifyListeners(),
-//     );
-//   }
-// }

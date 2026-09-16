@@ -1,5 +1,6 @@
 import 'dart:io' as io show File;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quill/extensions.dart' show isAndroid, isIOS, isWeb;
@@ -65,7 +66,7 @@ class MyQuillToolbar extends StatelessWidget {
     if (newImage == null) {
       return;
     }
-    if (isWeb()) {
+    if (kIsWeb) {
       controller.insertImageBlock(imageSource: newImage);
       return;
     }
@@ -74,7 +75,7 @@ class MyQuillToolbar extends StatelessWidget {
   }
 
   Future<void> onImageInsert(String image, QuillController controller) async {
-    if (isWeb() || isHttpBasedUrl(image)) {
+    if (kIsWeb || isHttpBasedUrl(image)) {
       controller.insertImageBlock(imageSource: image);
       return;
     }
@@ -299,9 +300,7 @@ class MyQuillToolbar extends StatelessWidget {
             embedButtons: FlutterQuillEmbeds.toolbarButtons(
               imageButtonOptions: QuillToolbarImageButtonOptions(
                 imageButtonConfigurations: QuillToolbarImageConfigurations(
-                  onImageInsertCallback: isAndroid(supportWeb: false) ||
-                          isIOS(supportWeb: false) ||
-                          isWeb()
+                  onImageInsertCallback: true || false || kIsWeb
                       ? (image, controller) =>
                           onImageInsertWithCropping(image, controller, context)
                       : onImageInsert,

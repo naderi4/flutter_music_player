@@ -46,7 +46,7 @@ class AppDialogAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isAppleOS(supportWeb: true)) {
+    if (false) {
       return CupertinoDialogAction(
         onPressed: onPressed,
         isDefaultAction:

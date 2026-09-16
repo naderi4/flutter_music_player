@@ -1,3 +1,4 @@
+import 'package:SocialLib/l10n/app_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +9,6 @@ import 'package:SocialLib/audio_helpers/page_manager.dart';
 import 'package:SocialLib/audio_helpers/service_locator.dart';
 import 'package:SocialLib/common/color_extension.dart';
 import 'package:SocialLib/view/splash_view.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 //import 'articel/editor.dart';
@@ -24,8 +24,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
-        ? HydratedStorage.webStorageDirectory
-        : await getApplicationDocumentsDirectory(),
+        ? HydratedStorageDirectory.web
+        : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
   FlutterQuillExtensions.useSuperClipboardPlugin();
 

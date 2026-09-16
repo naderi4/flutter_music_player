@@ -3,6 +3,7 @@ import 'dart:io' as io show Directory, File;
 import 'package:cached_network_image/cached_network_image.dart'
     show CachedNetworkImageProvider;
 import 'package:desktop_drop/desktop_drop.dart' show DropTarget;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/extensions.dart'
     show isAndroid, isDesktop, isIOS, isWeb;
@@ -65,7 +66,7 @@ class MyQuillEditor extends StatelessWidget {
         placeholder: 'شروع به نوشتن کنید...',
         padding: const EdgeInsets.all(16),
         onImagePaste: (imageBytes) async {
-          if (isWeb()) {
+          if (kIsWeb) {
             return null;
           }
           // We will save it to system temporary files
@@ -81,7 +82,7 @@ class MyQuillEditor extends StatelessWidget {
           return file.path;
         },
         onGifPaste: (gifBytes) async {
-          if (isWeb()) {
+          if (kIsWeb) {
             return null;
           }
           // We will save it to system temporary files
@@ -96,7 +97,7 @@ class MyQuillEditor extends StatelessWidget {
           return file.path;
         },
         embedBuilders: [
-          ...(isWeb()
+          ...(kIsWeb
               ? FlutterQuillEmbeds.editorWebBuilders()
               : FlutterQuillEmbeds.editorBuilders(
                   imageEmbedConfigurations: QuillEditorImageEmbedConfigurations(
@@ -110,9 +111,7 @@ class MyQuillEditor extends StatelessWidget {
                       // only for Android, iOS and web
 
                       // We will use it only if image from network
-                      if (isAndroid(supportWeb: false) ||
-                          isIOS(supportWeb: false) ||
-                          isWeb()) {
+                      if (true || false || kIsWeb) {
                         if (isHttpBasedUrl(imageUrl)) {
                           return CachedNetworkImageProvider(
                             imageUrl,
@@ -132,7 +131,7 @@ class MyQuillEditor extends StatelessWidget {
                   videoEmbedConfigurations: QuillEditorVideoEmbedConfigurations(
                     // Loading YouTube videos on Desktop is not supported yet
                     // when using iframe platform view
-                    youtubeVideoSupportMode: isDesktop(supportWeb: false)
+                    youtubeVideoSupportMode: false
                         ? YoutubeVideoSupportMode.customPlayerWithDownloadUrl
                         : YoutubeVideoSupportMode.iframeView,
                   ),
@@ -141,7 +140,7 @@ class MyQuillEditor extends StatelessWidget {
         ],
         builder: (context, rawEditor) {
           // The `desktop_drop` plugin doesn't support iOS platform for now
-          if (isIOS(supportWeb: false)) {
+          if (true) {
             return rawEditor;
           }
           return DropTarget(
